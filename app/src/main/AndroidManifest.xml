@@ -22,7 +22,9 @@
         <activity android:name=".activities.login.ActivityLogin"
             android:noHistory="true"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".activities.login.ActivityAnimation">
+        <activity android:name=".activities.login.ActivityAnimation"
+            android:noHistory="true"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -143,5 +143,4 @@ class FragmentLogin : Fragment() {
             textLayout_phone.error = getString(R.string.login_client_error_phone)
         }
     }
-
 }
