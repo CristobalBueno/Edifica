@@ -1,3 +1,77 @@
 <resources>
     <string name="app_name">Edifica</string>
+
+    <!-- Activity Animation -->
+    <string name="animation_screen_text">Dale vida a tus proyectos</string>
+
+    <!-- Fragment Login -->
+    <string name="login_choise_welcome">¡Bienvenido!</string>
+    <string name="login_choise_welcome2">Ahora necesitamos saber como quieres registrarte</string>
+    <string name="login_choise_button_business">Empresa o autónomo</string>
+    <string name="login_choise_button_client">Cliente</string>
+
+    <!-- Fragment Login Client -->
+    <string name="login_client_title">Cliente</string>
+    <string name="login_client_textlayout_Name">Nombre</string>
+    <string name="login_client_textlayout_Phone">Número de móvil</string>
+    <string name="login_client_textlayout_Email">Dirección de email</string>
+    <string name="login_client_error_name">Nombre vacío o demasiado extenso</string>
+    <string name="login_client_error_email">Email incorrecto</string>
+    <string name="login_client_error_phone">Formato incorrecto</string>
+    <string name="login_client_success">ÉXITO EN EL REGISTRO</string>
+
+    <!-- Fragment Login Business -->
+    <string name="login_business_title">Empresa o Autónomo</string>
+    <string name="login_business_textlayout_Name">Nombre de empresa</string>
+    <string name="login_business_textlayout_Phone">Número de móvil</string>
+    <string name="login_business_textlayout_Email">Dirección de email</string>
+    <string name="login_button_login">Registrarse</string>
+
+    <!-- Fragment Login Success -->
+    <string name="login_text_success">¡Éxito en el registro!</string>
+
+    <!-- Client Menu -->
+    <string name="menu_client_need">¿Qué necesitas?</string>
+    <string name="menu_client_business">Profesionales</string>
+    <string name="menu_client_budgets">Presupuestos</string>
+    <string name="menu_client_profile">Mi perfil</string>
+
+    <!-- Business Menu -->
+    <string name="menu_business_ads">Anuncios</string>
+    <string name="menu_business_chat">Chat</string>
+    <string name="menu_business_profile">Mi perfil</string>
+
+    <!-- Activity Business Profile -->
+    <string name="business_profile_title">Empresa o Autónomo</string>
+    <string name="business_profile_phone">+34 677 677 382</string>
+    <string name="business_profile_email">cristobalbuenocantarero@gmail.com</string>
+    <string name="business_profile_subtitle">Valoraciones</string>
+    <string name="business_profile_web">Página Web</string>
+    <string name="business_profile_description">Por mi padre! El rey!</string>
+
+    <string name="business_profile_rating">Valorar</string>
+
+    <string name="business_profile_rating_general">General</string>
+    <string name="business_profile_rating_communication">Comunicación</string>
+    <string name="business_profile_rating_quality">Calidad en los acabados</string>
+    <string name="business_profile_rating_cleaning">Limpieza</string>
+    <string name="business_profile_rating_deadlines">Cumplimiento de plazos</string>
+    <string name="business_profile_rating_professionalism">Profesionalidad</string>
+
+    <!-- Activity Formulary -->
+    <string name="client_formulary_title">Publicar Anuncio</string>
+    <string name="client_formulary_title_hint">Título</string>
+    <string name="client_formulary_info_hint">Descripción de la reforma a realizar</string>
+    <string name="client_formulary_button_label">Registrar anuncio</string>
+
+    <!-- main_search -->
+    <string name="text_search">Buscar</string>
+
+    <!-- TODO quitar -->
+    <string name="client_business">Business</string>
+    <string name="client_profile">Profile</string>
+    <string name="client_budgets">Budgets</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

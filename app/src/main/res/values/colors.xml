@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
-    <color name="colorPrimaryDark">#3700B3</color>
-    <color name="colorAccent">#03DAC5</color>
+
+    <!-- Base application color. -->
+    <color name="colorBase">#ffffff</color>
+    <color name="colorToolbar">#ffffff</color>
+    <color name="colorTextTitleBase">#1C1A20</color>
+    <color name="colorTextSubtitleBase">#242229</color>
+
+    <!-- Base primary color. -->
+    <color name="colorBlue">#4848cf</color>
+    <color name="colorBlueIcon">#273b7a</color>
+    <color name="colorYellow">#fdd54f</color>
+    <color name="colorYellowLight">#FFE078</color>
+    <color name="colorRed">#ff5151</color>
+    <color name="colorGreen">#43a74d</color>
+    <color name="colorGrey">#C8CCC8</color>
+
 </resources>
