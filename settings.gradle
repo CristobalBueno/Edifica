@@ -1,0 +1,2 @@
+rootProject.name='Edifica'
+include ':app'
