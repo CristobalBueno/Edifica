@@ -7,8 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.edifica.R
 import com.edifica.abstract.BaseActivity
-import com.edifica.activities.client.ActivityClientMain
-import com.edifica.models.User
+import com.edifica.activities.clients.ActivityClientMain
+import com.edifica.models.Token
 import kotlinx.android.synthetic.main.activity_animation.*
 import render.animations.Attention
 import render.animations.Flip
@@ -18,7 +18,7 @@ import render.animations.Zoom
 class ActivityAnimation : BaseActivity() {
 
     var animation: Int = 0
-    var user: User? = null
+    var token: Token? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,7 +78,7 @@ class ActivityAnimation : BaseActivity() {
     }
 
     fun getLogin(): Boolean {
-        if (user != null) {
+        if (token != null) {
             return true
         }
 

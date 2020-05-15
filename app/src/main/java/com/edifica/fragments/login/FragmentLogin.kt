@@ -9,8 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.edifica.R
-import com.edifica.activities.client.ActivityClientMain
+import com.edifica.activities.business.ActivityBusinessMain
+import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityLogin
+import com.edifica.models.Token
 import kotlinx.android.synthetic.main.fragment_login.*
 
 /**
@@ -21,6 +23,10 @@ class FragmentLogin : Fragment() {
     var isValidName: Boolean = false
     var isValidPhone: Boolean = false
     var isValidEmail: Boolean = false
+    var isClient: Boolean? = false
+    val ISCLIENT = "isClient"
+    var identifier: Int = 1
+    lateinit var userToken : Token
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,9 +49,13 @@ class FragmentLogin : Fragment() {
     fun updateView() {
 
         val data = arguments
-        val isClient = "isClient"
+        isClient = data?.getBoolean(ISCLIENT)
 
-        when (data?.getBoolean(isClient)) {
+        if (isClient == null) {
+            isClient = false
+        }
+
+        when (isClient) {
             true -> {
                 text_title.text = getText(R.string.login_client_title)
                 textLayout_name.hint = getString(R.string.login_client_textlayout_Name)
@@ -67,6 +77,15 @@ class FragmentLogin : Fragment() {
         phoneVerification()
 
         if (isValidName && isValidPhone && isValidEmail) {
+
+            if (isClient == true) {
+                identifier = 0
+            } else {
+                identifier = 1
+            }
+
+            userToken = Token(text_name.text.toString(), text_phone.text.toString(), text_email.text.toString(), identifier)
+
             Toast.makeText(context, getString(R.string.login_client_success), Toast.LENGTH_LONG)
                 .show()
 
@@ -78,9 +97,15 @@ class FragmentLogin : Fragment() {
     //TODO descativar estas ventanas una vez que se ha registado
 
     fun clientStart() {
-        Handler().postDelayed(Runnable {
-            (activity as ActivityLogin).gotoActivity(ActivityClientMain())
-        }, 2000)
+        if (userToken.identifier == 0) {
+            Handler().postDelayed(Runnable {
+                (activity as ActivityLogin).gotoActivity(ActivityClientMain())
+            }, 2000)
+        } else {
+            Handler().postDelayed(Runnable {
+                (activity as ActivityLogin).gotoActivity(ActivityBusinessMain())
+            }, 2000)
+        }
     }
 
     fun nameVerification() {

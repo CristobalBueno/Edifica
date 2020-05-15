@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragmentBusinessAds"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/menu_business_ads" />
+
+    <item
+        android:id="@+id/fragmentBusinessChat"
+        android:icon="@drawable/ic_insert_chart_24dp"
+        android:title="@string/menu_business_chat" />
+
+    <item
+        android:id="@+id/fragmentBusinessProfile"
+        android:icon="@drawable/ic_settings_24dp"
+        android:title="@string/menu_business_profile" />
+</menu>
