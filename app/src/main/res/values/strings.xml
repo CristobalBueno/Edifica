@@ -18,13 +18,16 @@
     <string name="login_client_error_name">Nombre vacío o demasiado extenso</string>
     <string name="login_client_error_email">Email incorrecto</string>
     <string name="login_client_error_phone">Formato incorrecto</string>
+    <string name="login_client_error_pass">Debe ser entre 6 y 16 digitos</string>
     <string name="login_client_success">ÉXITO EN EL REGISTRO</string>
+    <string name="login_client_fail">FALLO EN EL REGISTRO</string>
 
     <!-- Fragment Login Business -->
     <string name="login_business_title">Empresa o Autónomo</string>
     <string name="login_business_textlayout_Name">Nombre de empresa</string>
     <string name="login_business_textlayout_Phone">Número de móvil</string>
     <string name="login_business_textlayout_Email">Dirección de email</string>
+    <string name="login_business_textlayout_Password">Contraseña</string>
     <string name="login_button_login">Registrarse</string>
 
     <!-- Fragment Login Success -->

@@ -1,16 +1,12 @@
 package com.edifica.fragments.login
 
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.edifica.R
-import com.edifica.activities.business.ActivityBusinessMain
-import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityLogin
 import com.edifica.models.Token
 import kotlinx.android.synthetic.main.fragment_login.*
@@ -23,10 +19,12 @@ class FragmentLogin : Fragment() {
     var isValidName: Boolean = false
     var isValidPhone: Boolean = false
     var isValidEmail: Boolean = false
+    var isValidPassword = false
+
     var isClient: Boolean? = false
     val ISCLIENT = "isClient"
     var identifier: Int = 1
-    lateinit var userToken : Token
+    lateinit var userToken: Token
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,18 +53,19 @@ class FragmentLogin : Fragment() {
             isClient = false
         }
 
+        textLayout_phone.hint = getString(R.string.login_client_textlayout_Phone)
+        textLayout_email.hint = getString(R.string.login_client_textlayout_Email)
+        textLayout_passworld.hint = getString(R.string.login_business_textlayout_Password)
+
         when (isClient) {
             true -> {
                 text_title.text = getText(R.string.login_client_title)
                 textLayout_name.hint = getString(R.string.login_client_textlayout_Name)
-                textLayout_phone.hint = getString(R.string.login_client_textlayout_Phone)
-                textLayout_email.hint = getString(R.string.login_client_textlayout_Email)
+
             }
             false -> {
                 text_title.text = getText(R.string.login_business_title)
                 textLayout_name.hint = getString(R.string.login_business_textlayout_Name)
-                textLayout_phone.hint = getString(R.string.login_business_textlayout_Phone)
-                textLayout_email.hint = getString(R.string.login_business_textlayout_Email)
             }
         }
     }
@@ -75,8 +74,9 @@ class FragmentLogin : Fragment() {
         nameVerification()
         emailVerification()
         phoneVerification()
+        passwordVerification()
 
-        if (isValidName && isValidPhone && isValidEmail) {
+        if (isValidName && isValidPhone && isValidEmail && isValidPassword) {
 
             if (isClient == true) {
                 identifier = 0
@@ -84,27 +84,15 @@ class FragmentLogin : Fragment() {
                 identifier = 1
             }
 
-            userToken = Token(text_name.text.toString(), text_phone.text.toString(), text_email.text.toString(), identifier)
+            userToken = Token(
+                text_name.text.toString(),
+                text_phone.text.toString(),
+                text_email.text.toString(),
+                text_password.text.toString(),
+                "", identifier
+            )
 
-            Toast.makeText(context, getString(R.string.login_client_success), Toast.LENGTH_LONG)
-                .show()
-
-            clientStart()
-        }
-    }
-
-    //TODO Comprobar si hay que llevarlo a cliente o empresa
-    //TODO descativar estas ventanas una vez que se ha registado
-
-    fun clientStart() {
-        if (userToken.identifier == 0) {
-            Handler().postDelayed(Runnable {
-                (activity as ActivityLogin).gotoActivity(ActivityClientMain())
-            }, 2000)
-        } else {
-            Handler().postDelayed(Runnable {
-                (activity as ActivityLogin).gotoActivity(ActivityBusinessMain())
-            }, 2000)
+            (activity as ActivityLogin).createUser(userToken)
         }
     }
 
@@ -141,6 +129,18 @@ class FragmentLogin : Fragment() {
         } else {
             isValidPhone = false
             textLayout_phone.error = getString(R.string.login_client_error_phone)
+        }
+    }
+
+    fun passwordVerification() {
+        var password = text_password.text
+
+        if (password?.length!! < 16 && password.length > 6) {
+            isValidPassword = true
+            textLayout_passworld.error = null
+        } else {
+            isValidPassword = false
+            textLayout_passworld.error = getString(R.string.login_client_error_pass)
         }
     }
 }

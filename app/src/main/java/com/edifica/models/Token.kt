@@ -1,45 +1,48 @@
 package com.edifica.models
 
-import android.content.Context
-import androidx.core.content.ContentProviderCompat.requireContext
-import androidx.security.crypto.EncryptedFile
-import androidx.security.crypto.MasterKeys
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
-class Token(val name: String, val phone: String, val email: String, val identifier: Int) {
+class Token(
+    var name: String,
+    var phone: String,
+    var email: String,
+    var password: String,
+    var uid: String,
+    var identifier: Int
+) {
 
-    private val FILENAME = "token"
-    private val keyGenParameterSpec = MasterKeys.AES256_GCM_SPEC
-    private val masterKeyAlias = MasterKeys.getOrCreate(keyGenParameterSpec)
-    private val fileToWrite = FILENAME
+    fun saveToken(file: File) {
+        var fileOut = FileOutputStream(file)
 
-    fun saveToken(context : Context) {
-        val encryptedFile = encryptedFile(context)
+        fileOut.write(("$name,$phone,$email,$uid,$identifier").toByteArray())
+        fileOut.close()
+    }
 
-        encryptedFile.openFileOutput().use { outputStream ->
-            // Write data to your encrypted file
+    override fun toString(): String {
+        return "Token(name='$name', phone='$phone', email='$email', password='$password', uid='$uid', identifier=$identifier)"
+    }
+
+
+    companion object {
+        fun readToken(file: File): Token {
+
+            var fileOut = FileInputStream(file)
+
+            var text = fileOut.readBytes().toString(charset("UTF-8"))
+            var name = text.split(",")
+
+            var token = Token(name.get(0), name.get(1), name.get(2), "", name.get(3), name.get(4).toInt())
+            fileOut.close()
+
+            return token
+        }
+
+        fun deleteToken(file: File) {
+            file.delete()
         }
     }
 
-    fun readToken(context : Context) {
-        val encryptedFile = encryptedFile(context)
 
-            encryptedFile.openFileInput().use { inputStream ->
-                // Read data from your encrypted file
-            }
-    }
-
-    private fun encryptedFile(context : Context) : EncryptedFile {
-        val file = File(context?.filesDir, FILENAME)
-
-        val fileToWrite = FILENAME
-        val encryptedFile = EncryptedFile.Builder(
-            File(file, fileToWrite),
-            context,
-            masterKeyAlias,
-            EncryptedFile.FileEncryptionScheme.AES256_GCM_HKDF_4KB
-        ).build()
-
-        return encryptedFile
-    }
 }
