@@ -5,12 +5,12 @@ import java.io.FileInputStream
 import java.io.FileOutputStream
 
 class Token(
-    var name: String,
-    var phone: String,
-    var email: String,
-    var password: String,
-    var uid: String,
-    var identifier: Int
+    var name: String = "",
+    var phone: String = "",
+    var email: String = "",
+    var password: String = "",
+    var uid: String = "",
+    var identifier: Int = 0
 ) {
 
     fun saveToken(file: File) {

@@ -10,11 +10,12 @@ import com.edifica.R
 import com.edifica.abstract.BaseActivity
 import com.edifica.activities.business.ActivityBusinessMain
 import com.edifica.activities.clients.ActivityClientMain
-import com.edifica.models.DBAccess
 import com.edifica.models.Dataholder
 import com.edifica.models.Token
 import com.edifica.models.Token.Companion.readToken
+import com.edifica.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_animation.*
 import render.animations.Attention
 import render.animations.Flip
@@ -27,6 +28,9 @@ class ActivityAnimation : BaseActivity() {
     var animation: Int = 0
     var token: Boolean = false
     lateinit var userToken: Token
+
+    var db = FirebaseFirestore.getInstance()
+    var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,25 +104,31 @@ class ActivityAnimation : BaseActivity() {
         return false
     }
 
-    // TODO Cambiarlo a otro lugar (segundo plano)
     fun loadUser() {
         val user = FirebaseAuth.getInstance().currentUser
         val file = File(filesDir, Dataholder.FILENAME)
 
         if (user != null) {
             userToken = readToken(file)
-            Log.e("debug", userToken.toString())
             if (userToken.uid == user.uid) {
+                val query = db.collection("users").document(auth.currentUser?.uid!!)
+                var dbUser: User?
+
                 token = true
-                // TODO Actualizar datos de la base de datos
-                var dbUser = DBAccess.loadUser()
-                Log.e("debug", dbUser.toString())
-                if (dbUser != null) {
-                    userToken.name = dbUser.name
-                    userToken.phone = dbUser.phone
-                    userToken.identifier = dbUser.identifier
-                    userToken.email = dbUser.email
-                    Log.e("debug", userToken.toString())
+
+                query.get().addOnSuccessListener { document ->
+                    dbUser = document.toObject(User::class.java)
+                    Log.e("debug",dbUser.toString())
+
+                    userToken.name = dbUser?.name.toString()
+                    userToken.phone = dbUser?.phone.toString()
+                    userToken.identifier = dbUser?.identifier!!
+                    userToken.email = dbUser?.email.toString()
+
+                    Log.e("debug",userToken.toString())
+                    Log.d("debug","success updating data")
+                }.addOnFailureListener { exception ->
+                    Log.d("debug","get failed with", exception)
                 }
             }
         }

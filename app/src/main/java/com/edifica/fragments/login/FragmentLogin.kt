@@ -135,7 +135,7 @@ class FragmentLogin : Fragment() {
     fun passwordVerification() {
         var password = text_password.text
 
-        if (password?.length!! < 16 && password.length > 6) {
+        if (password?.length!! <= 16 && password.length >= 6) {
             isValidPassword = true
             textLayout_passworld.error = null
         } else {

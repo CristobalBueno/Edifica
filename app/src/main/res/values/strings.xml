@@ -9,6 +9,7 @@
     <string name="login_choise_welcome2">Ahora necesitamos saber como quieres registrarte</string>
     <string name="login_choise_button_business">Empresa o autónomo</string>
     <string name="login_choise_button_client">Cliente</string>
+    <string name="login_choise_button_count">YA TENGO CUENTA</string>
 
     <!-- Fragment Login Client -->
     <string name="login_client_title">Cliente</string>
@@ -29,6 +30,13 @@
     <string name="login_business_textlayout_Email">Dirección de email</string>
     <string name="login_business_textlayout_Password">Contraseña</string>
     <string name="login_button_login">Registrarse</string>
+
+    <!-- Activity Count -->
+    <string name="activity_count_title">Login</string>
+    <string name="activity_count_hint_email">Introduce correo electrónico</string>
+    <string name="activity_count_hint_password">Introduce contraseña</string>
+    <string name="activity_count_next">Entrar</string>
+    <string name="activity_count_reset_password">¿Has olvidado la contraseña?</string>
 
     <!-- Fragment Login Success -->
     <string name="login_text_success">¡Éxito en el registro!</string>
@@ -76,7 +84,7 @@
     <string name="client_profile">Profile</string>
     <string name="client_budgets">Budgets</string>
     <string name="business_ads">Ads</string>
-   <string name="business_chat">Chat</string>
+    <string name="business_chat">Chat</string>
     <string name="business_profile">Profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
