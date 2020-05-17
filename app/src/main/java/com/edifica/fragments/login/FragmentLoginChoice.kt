@@ -65,7 +65,6 @@ class FragmentLoginChoice : Fragment() {
             override fun onTick(millisUntilFinished: Long) {
                 when (animation) {
 
-
                     1 -> {
                         // Set Animation
                         image_left.alpha = 1F

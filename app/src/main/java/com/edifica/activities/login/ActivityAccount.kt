@@ -82,6 +82,8 @@ class ActivityAccount : BaseActivity() {
                         Log.d("debug", "get failed with", exception)
                     }
                 } else {
+                    // TODO SANTANA
+                    // TODO NADA DE HARDCODES
                     Toast.makeText(
                         baseContext, "Authentication Failed.",
                         Toast.LENGTH_SHORT

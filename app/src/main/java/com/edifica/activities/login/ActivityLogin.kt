@@ -40,9 +40,13 @@ class ActivityLogin : BaseActivity() {
 
         val bundle = Bundle()
 
+        // TODO SANTANA
+        // TODO COMENTARIOS EN INGLES
         //Para que tenga sombra o no (por ello, la elevación)
         supportActionBar?.elevation = 0.0f
 
+        // TODO SANTANA
+        // TODO COMENTARIOS EN INGLES
         //Aquí relacionamos cada una de las posiciones de las pestaña, con   nuestros respectivos Fragments.
         val myAdapter = object : FragmentStateAdapter(this) {
             override fun createFragment(position: Int): Fragment {
@@ -68,16 +72,22 @@ class ActivityLogin : BaseActivity() {
                 }
             }
 
+            // TODO SANTANA
+            // TODO COMENTARIOS EN INGLES
             //Número de ítems que mostrará, en este caso 3
             override fun getItemCount(): Int {
                 return 3
             }
         }
 
+        // TODO SANTANA
+        // TODO COMENTARIOS EN INGLES
         //Instanciamos el diseño.
         mainViewPager2.adapter = myAdapter
         indicator.setViewPager(mainViewPager2)
 
+        // TODO SANTANA
+        // TODO COMENTARIOS EN INGLES
         //Esta línea es para que cuando arranque, aparezca en una pestalla en  particular y con el efecto de inicio o no:
         mainViewPager2.setCurrentItem(1, false)
     }

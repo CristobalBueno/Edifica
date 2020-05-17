@@ -13,11 +13,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.clients.ActivityClientFormulary"></activity>
+        <activity android:name=".activities.business.ActivityBusinessAdsDetails"></activity>
+        <activity android:name=".activities.clients.ActivityClientProfileMod" />
+        <activity android:name=".activities.clients.ActivityClientAds" />
+        <activity android:name=".activities.business.ActivityBusinessProfile" />
+        <activity android:name=".activities.clients.ActivityClientFormulary" />
         <activity
             android:name=".activities.login.ActivityAccount"
             android:noHistory="true"
-            android:windowSoftInputMode="adjustPan"></activity>
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".activities.business.ActivityBusinessMain"
             android:windowSoftInputMode="adjustPan" />

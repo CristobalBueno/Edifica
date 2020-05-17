@@ -75,6 +75,18 @@
     <string name="client_formulary_info_hint">Descripción de la reforma a realizar</string>
     <string name="client_formulary_button_label">Registrar anuncio</string>
 
+    <!-- Activity Business Ads Details -->
+    <string name="activity_business_ads_details_title">DESCRIPCIÓN</string>
+    <string name="activity_business_ads_details_owner">Propietario:</string>
+    <string name="activity_business_ads_details_settlement">Establecimiento:</string>
+    <string name="activity_business_ads_details_province">Provincia:</string>
+    <string name="activity_business_ads_details_formulary">DETALLES</string>
+    <string name="activity_business_ads_details_accept">Oferta</string>
+    <string name="activity_business_ads_details_back">Ignorar</string>
+    <string name="activity_business_ads_details_dialog_hint">Introduce una oferta preliminar</string>
+    <string name="activity_business_ads_details_dialog_send">Se ha enviado con éxito la oferta</string>
+    <string name="activity_business_ads_details_dialog_Nosend">La oferta esta vacía y no se ha enviado</string>
+
     <!-- main_search -->
     <string name="text_search">Buscar</string>
 

@@ -28,5 +28,7 @@ class ActivityClientFormulary : AppCompatActivity() {
 
         spinnerProvince = findViewById<Spinner>(R.id.formulary_spinner_Province)
         spinnerProvince.adapter = FormularySpinnerAdapter(this, R.id.formulary_tex_spinner_row, Dataholder.spinnerProvince)
+
+        // TODO Terminar de poner las fotos y guardar en base de datos. Despues enviar a la activity Main.
     }
 }

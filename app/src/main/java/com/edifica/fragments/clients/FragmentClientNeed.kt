@@ -75,7 +75,7 @@ class FragmentClientNeed : Fragment(), GridCustomListener {
     override fun onItemClick(guild: Guild, position: Int) {
         guilds[position] = guild
 
-        var number = guilds.filter { it.isChecked == true }
+        var number = guilds.filter { it.isChecked }
 
         if (number.size > 0) {
             floatingButton.visibility = View.VISIBLE
