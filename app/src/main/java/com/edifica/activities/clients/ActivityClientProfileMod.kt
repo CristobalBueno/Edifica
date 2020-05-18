@@ -5,18 +5,18 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.edifica.R
+import com.edifica.abstract.BaseActivity
 import com.edifica.models.Dataholder
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.android.synthetic.main.activity_client_profile_mod.*
 import kotlinx.android.synthetic.main.alert_dialog_profile_mod_email.view.*
 import kotlinx.android.synthetic.main.alert_dialog_profile_mod_name.view.*
 
-class ActivityClientProfileMod : AppCompatActivity() {
+class ActivityClientProfileMod : BaseActivity() {
 
     // TODO SANTANA
     // TODO LO REFERENTE AL DATAHOLDER LO QUIERO QUITADO

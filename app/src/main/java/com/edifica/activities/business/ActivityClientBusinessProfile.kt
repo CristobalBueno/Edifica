@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.alert_dialog_rating.view.*
 
 // TODO QUE COÑO ES ESTO? ES DE CLIENTE? ES DE EMPRESA? DE QUE COÑO ES
 // TODO LOOOOOOOOOOSSSSSS PUUUUUUUUTOOOOOOOOOOOS NOOOOOOOMMMMMBREEEEEEEEEES
-class ActivityBusinessProfile : BaseActivity() {
+class ActivityClientBusinessProfile : BaseActivity() {
 
     val currentBusiness = Dataholder.currentBusinessProfile
 

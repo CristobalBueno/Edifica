@@ -1,16 +1,16 @@
 package com.edifica.activities.clients
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edifica.R
+import com.edifica.abstract.BaseActivity
 import com.edifica.adapters.ClientAdsAdapter
 import com.edifica.models.Ads
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.practica.proyect_no_name.Interface.AdListener
 import kotlinx.android.synthetic.main.activity_client_ads.*
 
-class ActivityClientAds : AppCompatActivity(), AdListener {
+class ActivityClientAds : BaseActivity(), AdListener {
 
 
     lateinit var mAdapter: ClientAdsAdapter

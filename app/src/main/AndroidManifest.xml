@@ -16,7 +16,7 @@
         <activity android:name=".activities.business.ActivityBusinessAdsDetails"></activity>
         <activity android:name=".activities.clients.ActivityClientProfileMod" />
         <activity android:name=".activities.clients.ActivityClientAds" />
-        <activity android:name=".activities.business.ActivityBusinessProfile" />
+        <activity android:name=".activities.business.ActivityClientBusinessProfile" />
         <activity android:name=".activities.clients.ActivityClientFormulary" />
         <activity
             android:name=".activities.login.ActivityAccount"
