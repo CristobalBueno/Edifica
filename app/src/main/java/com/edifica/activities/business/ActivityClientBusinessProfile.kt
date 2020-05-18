@@ -3,7 +3,6 @@ package com.edifica.activities.business
 import android.content.DialogInterface
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -12,18 +11,16 @@ import com.edifica.abstract.BaseActivity
 import com.edifica.models.Dataholder
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_business_profile.*
+import kotlinx.android.synthetic.main.activity_client_business_profile.*
 import kotlinx.android.synthetic.main.alert_dialog_rating.view.*
 
-// TODO QUE COÑO ES ESTO? ES DE CLIENTE? ES DE EMPRESA? DE QUE COÑO ES
-// TODO LOOOOOOOOOOSSSSSS PUUUUUUUUTOOOOOOOOOOOS NOOOOOOOMMMMMBREEEEEEEEEES
 class ActivityClientBusinessProfile : BaseActivity() {
 
     val currentBusiness = Dataholder.currentBusinessProfile
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_business_profile)
+        setContentView(R.layout.activity_client_business_profile)
 
         updateViewProfile()
 
