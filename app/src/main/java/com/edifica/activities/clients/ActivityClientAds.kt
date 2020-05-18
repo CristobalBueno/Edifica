@@ -28,21 +28,19 @@ class ActivityClientAds : BaseActivity(), AdListener {
 
     override fun deleteAd (Ad: Ads) {
         val dialogBuilder = MaterialAlertDialogBuilder(this , R.style.MyMaterialAlertDialog)
-        // TODO SANTANA
-        // TODO NADA DE HARDCODES
-        dialogBuilder.setMessage("¿Quieres eliminar el anuncio de ${Ad.settlement}?")
-            .setPositiveButton("eliminar") { _, _ ->
+
+        dialogBuilder.setMessage(R.string.client_ads_alert_dialog_message)
+            .setPositiveButton(R.string.client_ads_alert_dialog_delete) { _, _ ->
                 ads.remove(Ad)
                 mAdapter.notifyDataSetChanged()
             }
-            .setNegativeButton("No") { dialog, _ ->
+            .setNegativeButton(R.string.client_ads_alert_dialog_cancel) { dialog, _ ->
                 dialog.cancel()
             }
 
         val alert = dialogBuilder.create()
-        // TODO SANTANA
-        // TODO NADA DE HARDCODES
-        alert.setTitle("Eliminar anuncio")
+
+        alert.setTitle(R.string.client_ads_alert_dialog_title)
         alert.show()
     }
 }

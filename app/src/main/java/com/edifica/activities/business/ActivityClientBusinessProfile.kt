@@ -52,28 +52,24 @@ class ActivityClientBusinessProfile : BaseActivity() {
         val builder = MaterialAlertDialogBuilder(this, R.style.MyMaterialAlertDialog)
         val inflater = layoutInflater
 
-        //Esto me permite detectar todos los elementos del layout emergente
         val dialogView = inflater.inflate(R.layout.alert_dialog_rating, null)
 
         builder.setView(dialogView)
-            // TODO SANTANA
-            // TODO NADA DE HARDCODES
-            .setPositiveButton("Enviar"){ _, _ ->
+
+            .setPositiveButton(R.string.business_profile_alert_dialog_rating_send){ _, _ ->
 
                 //TODO falta añadir si puede hacer la valoracion if()
                 logic_Ratings(dialogView)
 
             }
-            // TODO SANTANA
-            // TODO NADA DE HARDCODES
-            .setNegativeButton("Cancelar",
+
+            .setNegativeButton(R.string.business_profile_alert_dialog_rating_cancel,
                 DialogInterface.OnClickListener { dialog, _ ->
                     dialog.cancel()
                 })
 
-        // TODO SANTANA
-        // TODO NADA DE HARDCODES
-        builder.setTitle("¿Cómo valoría el trabajo realizado?")
+
+        builder.setTitle(R.string.business_profile_alert_dialog_rating_title)
         builder.setCancelable(false).create().show()
     }
 
