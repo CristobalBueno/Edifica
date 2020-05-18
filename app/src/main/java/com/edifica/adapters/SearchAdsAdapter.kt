@@ -63,7 +63,7 @@ class SearchAdsAdapter (private val data: List<Ads>, private val onItemAdsClick:
         private val imageAds = view.findViewById(R.id.image_ads)as ImageView
 
         fun show(data: Ads) {
-            textNameAds.text = data.user.name
+            textNameAds.text = data.userClient.name
             textSettlementAds.text = data.settlement
             textProvinceAds.text = data.province
             Picasso.get().load(data.images[0]).into(imageAds)

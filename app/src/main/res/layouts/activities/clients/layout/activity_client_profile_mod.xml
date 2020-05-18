@@ -9,29 +9,28 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:orientation="vertical">
-        <Button
-            android:id="@+id/client_profile_mod_photo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="30dp"
-            android:backgroundTint="@color/colorRed"
-            android:text="Cambiar imagen" />
 
         <Button
             android:id="@+id/client_profile_mod_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:backgroundTint="@color/colorRed"
-            android:text="Cambiar nombre" />
+            android:backgroundTint="@color/colorRed" />
 
         <Button
             android:id="@+id/client_profile_mod_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
-            android:backgroundTint="@color/colorRed"
-            android:text="Cambiar email" />
+            android:backgroundTint="@color/colorRed" />
+        <Button
+            android:id="@+id/client_profile_delete_User"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="30dp"
+            android:textColor="@color/colorRed"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

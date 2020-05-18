@@ -10,13 +10,12 @@ import com.edifica.models.Ads
 import com.practica.proyect_no_name.Interface.AdListener
 import kotlinx.android.synthetic.main.item_ad.view.*
 
-class ClientAdsAdapter   (private val mDataSet: List<Ads>?,
-                          private val adListener: AdListener
+class ClientAdsAdapter(
+    private val mDataSet: List<Ads>?,
+    private val adListener: AdListener
 ) :
-RecyclerView.Adapter<ClientAdsAdapter.MainViewHolder>() {
+    RecyclerView.Adapter<ClientAdsAdapter.MainViewHolder>() {
 
-    // TODO SANTANA
-    // TODO Terminar la estetica de los ADS
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_ad, parent, false)
         return MainViewHolder(v)
@@ -24,9 +23,8 @@ RecyclerView.Adapter<ClientAdsAdapter.MainViewHolder>() {
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
         val data = mDataSet?.get(position)
-        data?.let {
-
-                adSelected -> holder.bindItems(adSelected)
+        data?.let { adSelected ->
+            holder.bindItems(adSelected)
 
             holder.itemView.item_ad.setOnLongClickListener {
                 adListener.deleteAd(adSelected)
@@ -40,13 +38,13 @@ RecyclerView.Adapter<ClientAdsAdapter.MainViewHolder>() {
     }
 
     inner class MainViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        private val text1 = v.findViewById(R.id.ad_settlement) as TextView
-        private val text2 = v.findViewById(R.id.ad_province) as TextView
-        private val text3 = v.findViewById(R.id.ad_fInfo) as TextView
+        private val settlement = v.findViewById(R.id.ad_settlement) as TextView
+        private val province = v.findViewById(R.id.ad_province) as TextView
+        private val formInfo = v.findViewById(R.id.ad_fInfo) as TextView
         fun bindItems(data: Ads) {
-            text1.text = data.settlement
-            text2.text = data.province
-            text3.text = data.formularyInfo
+            settlement.text = data.settlement
+            province.text = data.province
+            formInfo.text = data.formInfo
         }
     }
 }

@@ -87,6 +87,31 @@
     <string name="activity_business_ads_details_dialog_send">Se ha enviado con éxito la oferta</string>
     <string name="activity_business_ads_details_dialog_Nosend">La oferta esta vacía y no se ha enviado</string>
 
+    <!--FragmentClientProfile-->
+    <string name="fragment_client_profile_name">"Name"</string>
+    <string name="fragment_client_profile_email">"E-mail"</string>
+    <string name="fragment_client_profile_phone">"Phone"</string>
+    <string name="fragment_client_profile_ads">"Mostrar mis anuncios"</string>
+    <string name="fragment_client_profile_mod_profile">"Modificar perfil"</string>
+    <string name="fragment_client_profile_logout">"Cerrar sesión"</string>
+
+    <!-- ActivityClientProfileMod -->
+    <string name="activity_client_profile_mod_affirmative_question_change_name">"Si"</string>
+    <string name="activity_client_profile_mod_hint_question_change_name">"Introduzca el nuevo nombre"</string>
+    <string name="activity_client_profile_mod_negative_question_change_name">"No"</string>
+    <string name="activity_client_profile_mod_question_change_name">"¿Desea cambiar el nombre?"</string>
+    <string name="activity_client_profile_mod_hint_question_change_email">"Introduzca el nuevo email"</string>
+    <string name="activity_client_profile_mod_affirmative_question_change_email">"Si"</string>
+    <string name="activity_client_profile_mod_negative_question_change_email">"No"</string>
+    <string name="activity_client_profile_mod_question_change_email">"¿Desea cambiar el email?"</string>
+    <string name="activity_client_profile_mod_change_name_button">"Cambiar el nombre"</string>
+    <string name="activity_client_profile_mod_change_email_button">"Cambiar el e-mail"</string>
+    <string name="activity_client_profile_mod_delete_User">"Eliminar usuario"</string>
+
+
+
+
+
     <!-- main_search -->
     <string name="text_search">Buscar</string>
 

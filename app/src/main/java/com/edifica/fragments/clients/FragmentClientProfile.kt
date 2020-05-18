@@ -10,12 +10,8 @@ import com.edifica.activities.clients.ActivityClientProfileMod
 import com.edifica.activities.clients.ActivityClientAds
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityAnimation
-import com.edifica.models.Dataholder
 import kotlinx.android.synthetic.main.fragment_client_profile.*
 
-/**
- * A simple [Fragment] subclass.
- */
 class FragmentClientProfile : Fragment() {
 
     override fun onCreateView(
@@ -29,19 +25,16 @@ class FragmentClientProfile : Fragment() {
 
     override fun onResume() {
         super.onResume()
-
-        // TODO SANTANA
-        // TODO Arreglar esto
-        // TODO Fuera dataholder, recoger las cosas de la memoria interna
-        // TODO El cliente no tiene foto
-        client_profile_name.text = Dataholder.name
-        client_profile_phone.text = Dataholder.phone
-        client_profile_email.text = Dataholder.email
-        client_profile_image.setImageURI(null)
+        /* TODO actualizar con servidor
+        client_profile_name.text = server.name
+        client_profile_phone.text = server.phone
+        client_profile_email.text = server.email */
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        setDefaultLayout()
 
         client_profile_ads.setOnClickListener {
             (activity as ActivityClientMain).gotoActivity(ActivityClientAds())
@@ -49,11 +42,19 @@ class FragmentClientProfile : Fragment() {
         client_profile_mod.setOnClickListener {
             (activity as ActivityClientMain).gotoActivity(ActivityClientProfileMod())
         }
-        client_profile_delete.setOnClickListener {
+        client_profile_log_out.setOnClickListener {
+            //TODO log outuser
             (activity as ActivityClientMain).gotoActivity(ActivityAnimation())
             (activity as ActivityClientMain).finish()
         }
     }
 
-
+    private fun setDefaultLayout() {
+        client_profile_name.setText(R.string.fragment_client_profile_name)
+        client_profile_phone.setText(R.string.fragment_client_profile_phone)
+        client_profile_email.setText(R.string.fragment_client_profile_email)
+        client_profile_ads.setText(R.string.fragment_client_profile_ads)
+        client_profile_log_out.setText(R.string.fragment_client_profile_logout)
+        client_profile_mod.setText(R.string.fragment_client_profile_mod_profile)
+    }
 }

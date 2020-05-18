@@ -6,7 +6,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edifica.R
-import com.edifica.activities.business.ActivityClientBusinessProfile
+import com.edifica.activities.business.ActivityBusinessProfile
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.adapters.SearchBusinessAdapter
 import com.edifica.models.Business
@@ -48,7 +48,7 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
         // TODO usa bundles/Intents capullo, nada de DATAHOLDERS
         Dataholder.currentBusinessProfile = currentBusiness
 
-        (activity as ActivityClientMain).gotoActivity(ActivityClientBusinessProfile())
+        (activity as ActivityClientMain).gotoActivity(ActivityBusinessProfile())
     }
 
     fun search() {

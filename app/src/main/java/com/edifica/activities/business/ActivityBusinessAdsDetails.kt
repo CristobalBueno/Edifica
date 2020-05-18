@@ -1,7 +1,6 @@
 package com.edifica.activities.business
 
 import android.content.DialogInterface
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.widget.Toast
@@ -36,11 +35,11 @@ class ActivityBusinessAdsDetails : BaseActivity() {
         // TODO NADA DE DATAHOLDER, TODO O MEMORIA INTERNA O BASE DE DATOS
         val currentAds = Dataholder.currentAds
 
-        textView_name.text = currentAds.user.name
+        textView_name.text = currentAds.userClient.name
         textView_settlement.text = currentAds.settlement
         textView_province.text = currentAds.province
 
-        textView_formulary.text = currentAds.formularyInfo
+        textView_formulary.text = currentAds.formInfo
 
         Picasso.get().load(currentAds.images[0]).into(imageView_photos)
     }

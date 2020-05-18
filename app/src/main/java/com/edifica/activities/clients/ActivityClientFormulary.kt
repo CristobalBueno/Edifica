@@ -1,13 +1,13 @@
 package com.edifica.activities.clients
 
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Spinner
 import com.edifica.R
-import com.edifica.abstract.BaseActivity
 import com.edifica.models.Dataholder
 import com.practica.proyect_no_name.Adapter.FormularySpinnerAdapter
 
-class ActivityClientFormulary : BaseActivity() {
+class ActivityClientFormulary : AppCompatActivity() {
 
     lateinit var guilds : BooleanArray
     val SELECTEDGUILDS = "selectedGuilds"

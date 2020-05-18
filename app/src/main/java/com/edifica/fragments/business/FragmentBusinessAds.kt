@@ -24,7 +24,7 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
     // TODO SANTANA
     // TODO LO REFERENTE A DATAHOLDER LO QUIERO FUERA, O LO COGEIS DE BASE DE DATOS O DE
     // TODO MEMORIA INTERNA
-    var allAds = Dataholder.ads
+    var allAds = arrayListOf<Ads>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
