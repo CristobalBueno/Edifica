@@ -1,3 +1,5 @@
 package com.edifica.models
 
-class Business(val name: String, val phone: String, val email: String, val image: String, val ratings: ArrayList<Float>, val web: String)
+import java.io.Serializable
+
+class Business (var name: String = "", var phone: String= "", var email: String= "", var image: String= "", var ratings: ArrayList<Float> = arrayListOf(), var web: String= "") : Serializable

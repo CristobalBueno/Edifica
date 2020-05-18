@@ -1,3 +1,3 @@
 package com.edifica.models
 
-class Ads (val user: User, val settlement: String, val province: String, val images: ArrayList<String>, val formularyInfo: String)
+class Ads (var user: User , var settlement: String= "", var province: String= "", var images: ArrayList<String> = arrayListOf(), var formularyInfo: String = "")

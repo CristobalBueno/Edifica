@@ -26,16 +26,8 @@ object Dataholder {
         "Jaén"
     )
 
-    // TODO ESTO DEBE DE SACARSE DE BASE DE DATOS (O DE MEMORIA)
-    val business: ArrayList<Business> = arrayListOf(
-        (Business("Ferrovial S.L","685485685","ferrovial@gmail.com","https://www.ptcarretera.es/wp-content/uploads/2015/07/Ferrovial.jpg", arrayListOf(5.0F,5.0F,4.0F,3.5F,1F,2F),"https://www.ferrovial.com/es-es/")),
-        (Business("Rivervial S.L","75236542","pepe@gmail.com","https://rivervial.es/wp-content/uploads/2016/08/riverlogoligh.jpg", arrayListOf(4.0F,5.0F,4.0F,3.5F,1F,4F),"http://rivervial.es/")),
-        (Business("Sandro Rosell S.L","2452132185","rossel@gmail.com","https://www.fcbarcelona.com/fcbarcelona/photo/2018/03/16/3b613a25-37c6-4cda-b331-4c89602b6b4f/2722815.jpg", arrayListOf(1.0F,5.0F,4.0F,3.5F,1F,5F),"https://es.wikipedia.org/wiki/Sandro_Rosell")),
-        (Business("Ferrovial S.L","685485685","ferrovial@gmail.com","https://www.ptcarretera.es/wp-content/uploads/2015/07/Ferrovial.jpg", arrayListOf(5.0F,5.0F,4.0F,3.5F,1F,2F),"https://www.ferrovial.com/es-es/"))
-    )
 
-    // TODO ESTO DEBE DE SACARSE DE BASE DE DATOS (O DE MEMORIA)
-    lateinit var currentBusinessProfile: Business
+    // TODO FALTA HACER LA LÓGICA Y VER COMO METERLO EN BASE DE DATOS
     lateinit var inputRatingBusiness: ArrayList<Float> // [general, communication, cleaning, deadlines, quality, professionalism]
 
     // TODO ESTO DEBE DE SACARSE DE BASE DE DATOS (O DE MEMORIA)

@@ -1,6 +1,5 @@
 package com.edifica.fragments.login
 
-import android.graphics.Color
 import android.os.Bundle
 import android.os.CountDownTimer
 import androidx.fragment.app.Fragment
@@ -9,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
-import androidx.core.view.isVisible
 import com.edifica.R
 import com.edifica.activities.login.ActivityAccount
 import com.edifica.activities.login.ActivityLogin
