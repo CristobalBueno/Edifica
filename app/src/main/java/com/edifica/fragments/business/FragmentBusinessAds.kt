@@ -13,17 +13,22 @@ import com.edifica.adapters.SearchAdsAdapter
 import com.edifica.interfaces.CustomAdsListener
 import com.edifica.models.Ads
 import com.edifica.models.Dataholder
+import com.edifica.models.User
+import com.google.firebase.firestore.DocumentReference
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_business_ads.*
 
 /**
  * A simple [Fragment] subclass.
  */
 class FragmentBusinessAds : Fragment(), CustomAdsListener {
-    private lateinit var adsAdapter: SearchAdsAdapter
 
     // TODO SANTANA
-    // TODO LO REFERENTE A DATAHOLDER LO QUIERO FUERA, O LO COGEIS DE BASE DE DATOS O DE
-    // TODO MEMORIA INTERNA
+    // TODO COGEIS DE BASE DE DATOS
+
+    private lateinit var adsAdapter: SearchAdsAdapter
+    val TAG = "miapp"
+    var db = FirebaseFirestore.getInstance()
     var allAds = arrayListOf<Ads>()
 
     override fun onCreateView(
@@ -36,16 +41,30 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as ActivityBusinessMain).setSupportActionBar(topSearchAppBar)
 
+        (activity as ActivityBusinessMain).setSupportActionBar(topSearchAppBar)
         setHasOptionsMenu(true)
         topSearchAppBar.title = " "
         search()
     }
 
-    fun search(){
+    override fun onStart() {
+        super.onStart()
+
+        allAds = loadAllAdsDataBase()
+    }
+
+    override fun onItemAdsClick(currentAds: Ads, position: Int) {
+        // TODO SANTANA
+        // TODO LO REFERENTE A DATAHOLDER LO QUIERO FUERA, O LO COGEIS DE BASE DE DATOS O DE
+        // TODO MEMORIA INTERNA
+        Dataholder.currentAds = currentAds
+        (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessAdsDetails())
+    }
+
+    fun search() {
         mainRecyclerSeachAds.layoutManager = LinearLayoutManager(context)
-        adsAdapter = SearchAdsAdapter(allAds,this)
+        adsAdapter = SearchAdsAdapter(allAds, this)
         mainRecyclerSeachAds.adapter = adsAdapter
         mainRecyclerSeachAds.visibility = View.VISIBLE
     }
@@ -72,12 +91,36 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onItemAdsClick(currentAds: Ads, position: Int) {
-        // TODO SANTANA
-        // TODO LO REFERENTE A DATAHOLDER LO QUIERO FUERA, O LO COGEIS DE BASE DE DATOS O DE
-        // TODO MEMORIA INTERNA
-        Dataholder.currentAds = currentAds
-        (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessAdsDetails())
+    fun loadAllAdsDataBase(): ArrayList<Ads> {
+        val query = db.collection("ads")
+        var dbAllAds: ArrayList<Ads> = arrayListOf()
+
+        query.get().addOnSuccessListener { documents ->
+            if (documents != null) {
+                for (document in documents) {
+
+                    var user: User?
+                    var userAux: DocumentReference = document["user"] as DocumentReference
+                    var add: Ads = document.toObject(Ads::class.java)
+
+                    userAux.get().addOnCompleteListener{
+                        user = it.result?.toObject(User::class.java)
+
+                        Log.d(TAG, user.toString())
+                        add.user = user!!
+                        dbAllAds.add(add)
+                        search()
+                        Log.d(TAG, dbAllAds[0].toString())
+                    }
+                }
+
+            } else {
+                Log.d(TAG, "no such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d(TAG, "get failed with", exception)
+        }
+        return dbAllAds
     }
 
 }

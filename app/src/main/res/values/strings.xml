@@ -37,6 +37,8 @@
     <string name="activity_count_hint_password">Introduce contraseña</string>
     <string name="activity_count_next">Entrar</string>
     <string name="activity_count_reset_password">¿Has olvidado la contraseña?</string>
+    <string name="activity_count_authentication_failed">Autentificación fallida</string>
+
 
     <!-- Fragment Login Success -->
     <string name="login_text_success">¡Éxito en el registro!</string>
@@ -52,7 +54,7 @@
     <string name="menu_business_chat">Chat</string>
     <string name="menu_business_profile">Mi perfil</string>
 
-    <!-- Activity Business Profile -->
+    <!-- Activity Client Business Profile -->
     <string name="business_profile_title">Empresa o Autónomo</string>
     <string name="business_profile_phone">+34 677 677 382</string>
     <string name="business_profile_email">cristobalbuenocantarero@gmail.com</string>
@@ -68,8 +70,18 @@
     <string name="business_profile_rating_cleaning">Limpieza</string>
     <string name="business_profile_rating_deadlines">Cumplimiento de plazos</string>
     <string name="business_profile_rating_professionalism">Profesionalidad</string>
+    <string name="business_profile_alert_dialog_rating_send">Enviar</string>
+    <string name="business_profile_alert_dialog_rating_cancel">Cancelar</string>
+    <string name="business_profile_alert_dialog_rating_title">¿Cómo valoría el trabajo realizado?</string>
 
-    <!-- Activity Formulary -->
+    <!-- Activity Client Ads -->
+    <string name="client_ads_alert_dialog_title">Eliminar anuncio</string>
+    <string name="client_ads_alert_dialog_message">¿Quieres eliminar el anuncio?</string>
+    <string name="client_ads_alert_dialog_delete">Eliminar</string>
+    <string name="client_ads_alert_dialog_cancel">No</string>
+
+
+    <!-- Activity Client Formulary -->
     <string name="client_formulary_title">Publicar Anuncio</string>
     <string name="client_formulary_title_hint">Título</string>
     <string name="client_formulary_info_hint">Descripción de la reforma a realizar</string>
@@ -83,6 +95,9 @@
     <string name="activity_business_ads_details_formulary">DETALLES</string>
     <string name="activity_business_ads_details_accept">Oferta</string>
     <string name="activity_business_ads_details_back">Ignorar</string>
+    <string name="activity_business_ads_details_dialog_send_text">Enviar</string>
+    <string name="activity_business_ads_details_dialog_cancel_text">Cancelar</string>
+    <string name="activity_business_ads_details_dialog_title">Envia una cuantía aproximada</string>
     <string name="activity_business_ads_details_dialog_hint">Introduce una oferta preliminar</string>
     <string name="activity_business_ads_details_dialog_send">Se ha enviado con éxito la oferta</string>
     <string name="activity_business_ads_details_dialog_Nosend">La oferta esta vacía y no se ha enviado</string>

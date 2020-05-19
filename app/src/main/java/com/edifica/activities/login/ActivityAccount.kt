@@ -82,10 +82,9 @@ class ActivityAccount : BaseActivity() {
                         Log.d("debug", "get failed with", exception)
                     }
                 } else {
-                    // TODO SANTANA
-                    // TODO NADA DE HARDCODES
+
                     Toast.makeText(
-                        baseContext, "Authentication Failed.",
+                        baseContext, R.string.activity_count_authentication_failed,
                         Toast.LENGTH_SHORT
                     ).show()
                 }

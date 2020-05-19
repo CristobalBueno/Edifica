@@ -1,10 +1,5 @@
 package com.edifica.models
 
-class Ads(
-    val userClient: User,
-    val usersBusiness: ArrayList<Work>?,
-    val settlement: String,
-    val province: String,
-    val images: ArrayList<String>,
-    val formInfo: String
-)
+import com.google.firebase.firestore.Exclude
+
+class Ads (@get:Exclude var user: User = User(), var settlement: String= "", var province: String= "", var images: ArrayList<String> = arrayListOf(), var formularyInfo: String = "")

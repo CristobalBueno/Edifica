@@ -8,17 +8,15 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/iconlogo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/iconlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.business.ActivityBusinessProfileBudgets"></activity>
-        <activity android:name=".activities.business.ActivityBusinessProfileMod" />
-        <activity android:name=".activities.business.ActivityBusinessAdsDetails" />
+        <activity android:name=".activities.business.ActivityBusinessAdsDetails"></activity>
         <activity android:name=".activities.clients.ActivityClientProfileMod" />
         <activity android:name=".activities.clients.ActivityClientAds" />
-        <activity android:name=".activities.business.ActivityBusinessProfile" />
+        <activity android:name=".activities.business.ActivityClientBusinessProfile" />
         <activity android:name=".activities.clients.ActivityClientFormulary" />
         <activity
             android:name=".activities.login.ActivityAccount"

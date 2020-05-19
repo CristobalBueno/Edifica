@@ -1,16 +1,18 @@
 package com.edifica.fragments.clients
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.edifica.R
-import com.edifica.activities.business.ActivityBusinessProfile
+import com.edifica.activities.business.ActivityClientBusinessProfile
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.adapters.SearchBusinessAdapter
 import com.edifica.models.Business
-import com.edifica.models.Dataholder
+import com.edifica.models.User
+import com.google.firebase.firestore.FirebaseFirestore
 import com.practica.proyect_no_name.Interface.CustomItemListener
 import kotlinx.android.synthetic.main.fragment_client_business.*
 
@@ -18,12 +20,11 @@ import kotlinx.android.synthetic.main.fragment_client_business.*
  * A simple [Fragment] subclass.
  */
 class FragmentClientBusiness : Fragment(), CustomItemListener {
-    private lateinit var businessAdapter: SearchBusinessAdapter
 
-    // TODO SANTANA
-    // TODO pasarlo a la base de datos
-    // TODO Crea un metodo para la llamada a base de datos y obtener todos los business. Y... borra de Dataholder
-    var allBusiness = Dataholder.business
+    private lateinit var businessAdapter: SearchBusinessAdapter
+    val TAG = "miapp"
+    var db = FirebaseFirestore.getInstance()
+    var allBusiness = arrayListOf<Business>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,20 +36,24 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as ActivityClientMain).setSupportActionBar(topSearchAppBar)
 
+        (activity as ActivityClientMain).setSupportActionBar(topSearchAppBar)
         setHasOptionsMenu(true)
         topSearchAppBar.title = " "
-        search()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        allBusiness = loadAllBusinessDataBase()
     }
 
     override fun onItemClick(currentBusiness: Business, position: Int) {
-        // TODO SANTANA
-        // TODO pasarlo al activity correspondiente (pero bien echo)
-        // TODO usa bundles/Intents capullo, nada de DATAHOLDERS
-        Dataholder.currentBusinessProfile = currentBusiness
-
-        (activity as ActivityClientMain).gotoActivity(ActivityBusinessProfile())
+        //TODO CRISTOBAL
+        (activity as ActivityClientMain).gotoActivity(
+            ActivityClientBusinessProfile(),
+            true,
+            currentBusiness
+        )
     }
 
     fun search() {
@@ -57,7 +62,6 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
         mainRecyclerSeachBusiness.adapter = businessAdapter
         mainRecyclerSeachBusiness.visibility = View.VISIBLE
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_search, menu)
@@ -77,5 +81,27 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
             }
         })
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    fun loadAllBusinessDataBase(): ArrayList<Business> {
+        val query = db.collection("users").whereEqualTo("identifier", 1)
+        var dbAllbusiness: ArrayList<Business> = arrayListOf()
+
+        query.get().addOnSuccessListener { documents ->
+            if (documents != null) {
+                for (document in documents) {
+                    var user: User = document.toObject(User::class.java)
+                    var business = Business(user.name, user.phone, user.email, user.image, user.ratings, user.web)
+                    Log.e("error", business.toString())
+                    dbAllbusiness.add(business)
+                }
+                search()
+            } else {
+                Log.d(TAG, "no such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d(TAG, "get failed with", exception)
+        }
+        return dbAllbusiness
     }
 }

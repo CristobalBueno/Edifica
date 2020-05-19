@@ -30,7 +30,7 @@ class ActivityBusinessAdsDetails : BaseActivity() {
 
     }
 
-    fun updateView(){
+    fun updateView() {
         // TODO SANTANA
         // TODO NADA DE DATAHOLDER, TODO O MEMORIA INTERNA O BASE DE DATOS
         val currentAds = Dataholder.currentAds
@@ -52,14 +52,17 @@ class ActivityBusinessAdsDetails : BaseActivity() {
         val offer = dialogView.editText_alertdialog_offer
 
         builder.setView(dialogView)
-            // TODO SANTANA
-            // TODO NADA DE HARDCODES
-            .setPositiveButton("Enviar"){ dialog, id ->
+
+            .setPositiveButton(R.string.activity_business_ads_details_dialog_send_text) { dialog, id ->
 
                 //TODO falta añadir el aviso al cliente y la cuantía
 
-                if (offer.text.toString().isNotEmpty()){
-                    Toast.makeText(this, getString(R.string.activity_business_ads_details_dialog_send), Toast.LENGTH_LONG)
+                if (offer.text.toString().isNotEmpty()) {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.activity_business_ads_details_dialog_send),
+                        Toast.LENGTH_LONG
+                    )
                         .show()
                     Dataholder.offersentbusiness = offer.text.toString()
 
@@ -67,23 +70,21 @@ class ActivityBusinessAdsDetails : BaseActivity() {
                         gotoActivity(ActivityBusinessMain())
                     }, 1000)
 
-                }else{
-                    Toast.makeText(this, getString(R.string.activity_business_ads_details_dialog_Nosend), Toast.LENGTH_LONG)
+                } else {
+                    Toast.makeText(
+                        this,
+                        getString(R.string.activity_business_ads_details_dialog_Nosend),
+                        Toast.LENGTH_LONG
+                    )
                         .show()
                 }
 
-            }
-
-            // TODO SANTANA
-            // TODO NADA DE HARDCODES
-            .setNegativeButton("Cancelar",
+            }.setNegativeButton(R.string.activity_business_ads_details_dialog_cancel_text,
                 DialogInterface.OnClickListener { dialog, id ->
                     dialog.cancel()
                 })
 
-        // TODO SANTANA
-        // TODO NADA DE HARDCODES
-        builder.setTitle("Envia una cuatía aproximada")
+        builder.setTitle(R.string.activity_business_ads_details_dialog_title)
         builder.setCancelable(false).create().show()
     }
 }
