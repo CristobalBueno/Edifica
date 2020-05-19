@@ -37,7 +37,9 @@ class ActivityClientBusinessProfile : BaseActivity() {
     }
 
     fun updateViewProfile() {
-        Picasso.get().load(currentBusiness.image).into(image_business_profile)
+        if (currentBusiness.image.isNotEmpty()) {
+            Picasso.get().load(currentBusiness.image).into(image_business_profile)
+        }
         text_name_business.text = currentBusiness.name
         text_phone_business.text = currentBusiness.phone
         text_email_business.text = currentBusiness.email

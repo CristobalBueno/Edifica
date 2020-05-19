@@ -63,7 +63,9 @@ class SearchBusinessAdapter(private val data: List<Business>, private val onItem
         fun show(data: Business) {
             textnamebusiness.text = data.name
             textemailbusiness.text = data.email
-            Picasso.get().load(data.image).into(imagebusiness)
+            if (data.image.isNotEmpty()) {
+                Picasso.get().load(data.image).into(imagebusiness)
+            }
         }
     }
 }

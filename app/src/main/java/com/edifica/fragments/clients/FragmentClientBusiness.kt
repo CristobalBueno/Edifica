@@ -11,6 +11,7 @@ import com.edifica.activities.business.ActivityClientBusinessProfile
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.adapters.SearchBusinessAdapter
 import com.edifica.models.Business
+import com.edifica.models.User
 import com.google.firebase.firestore.FirebaseFirestore
 import com.practica.proyect_no_name.Interface.CustomItemListener
 import kotlinx.android.synthetic.main.fragment_client_business.*
@@ -83,13 +84,16 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
     }
 
     fun loadAllBusinessDataBase(): ArrayList<Business> {
-        val query = db.collection("business")
+        val query = db.collection("users").whereEqualTo("identifier", 1)
         var dbAllbusiness: ArrayList<Business> = arrayListOf()
 
         query.get().addOnSuccessListener { documents ->
             if (documents != null) {
                 for (document in documents) {
-                    dbAllbusiness.add(document.toObject(Business::class.java))
+                    var user: User = document.toObject(User::class.java)
+                    var business = Business(user.name, user.phone, user.email, user.image, user.ratings, user.web)
+                    Log.e("error", business.toString())
+                    dbAllbusiness.add(business)
                 }
                 search()
             } else {

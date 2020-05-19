@@ -14,6 +14,7 @@ import com.edifica.interfaces.CustomAdsListener
 import com.edifica.models.Ads
 import com.edifica.models.Dataholder
 import com.edifica.models.User
+import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_business_ads.*
 
@@ -28,7 +29,6 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
     private lateinit var adsAdapter: SearchAdsAdapter
     val TAG = "miapp"
     var db = FirebaseFirestore.getInstance()
-    //var allAds = arrayListOf<Ads>()
     var allAds = arrayListOf<Ads>()
 
     override fun onCreateView(
@@ -45,15 +45,13 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
         (activity as ActivityBusinessMain).setSupportActionBar(topSearchAppBar)
         setHasOptionsMenu(true)
         topSearchAppBar.title = " "
-
-        allAds = Dataholder.ads
         search()
     }
 
     override fun onStart() {
         super.onStart()
 
-        //allAds = loadAllAdsDataBase()
+        allAds = loadAllAdsDataBase()
     }
 
     override fun onItemAdsClick(currentAds: Ads, position: Int) {
@@ -93,27 +91,36 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-//    fun loadAllAdsDataBase(): ArrayList<Ads> {
-//        val query = db.collection("ads")
-//        var dbAllAds: ArrayList<Ads> = arrayListOf()
-//
-//        query.get().addOnSuccessListener { documents ->
-//            if (documents != null) {
-//                for (document in documents) {
-//
-//                    allAds.add(document.toObject(Ads::class.java))
-//
-//                    Log.w("miapp", "VALOR:  $document")
-//                    dbAllAds.add(document.toObject(Ads::class.java))
-//                }
-//                search()
-//            } else {
-//                Log.d(TAG, "no such document")
-//            }
-//        }.addOnFailureListener { exception ->
-//            Log.d(TAG, "get failed with", exception)
-//        }
-//        return dbAllAds
-//    }
+    fun loadAllAdsDataBase(): ArrayList<Ads> {
+        val query = db.collection("ads")
+        var dbAllAds: ArrayList<Ads> = arrayListOf()
+
+        query.get().addOnSuccessListener { documents ->
+            if (documents != null) {
+                for (document in documents) {
+
+                    var user: User?
+                    var userAux: DocumentReference = document["user"] as DocumentReference
+                    var add: Ads = document.toObject(Ads::class.java)
+
+                    userAux.get().addOnCompleteListener{
+                        user = it.result?.toObject(User::class.java)
+
+                        Log.d(TAG, user.toString())
+                        add.user = user!!
+                        dbAllAds.add(add)
+                        search()
+                        Log.d(TAG, dbAllAds[0].toString())
+                    }
+                }
+
+            } else {
+                Log.d(TAG, "no such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d(TAG, "get failed with", exception)
+        }
+        return dbAllAds
+    }
 
 }
