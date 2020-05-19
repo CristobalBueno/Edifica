@@ -1,6 +1,7 @@
 package com.edifica.fragments.clients
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,9 +11,17 @@ import com.edifica.activities.clients.ActivityClientProfileMod
 import com.edifica.activities.clients.ActivityClientAds
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityAnimation
+import com.edifica.models.Dataholder
+import com.edifica.models.Token
+import com.edifica.models.Token.Companion.deleteToken
 import kotlinx.android.synthetic.main.fragment_client_profile.*
+import java.io.File
+
 
 class FragmentClientProfile : Fragment() {
+
+    lateinit var userToken: Token
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,10 +34,11 @@ class FragmentClientProfile : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        /* TODO actualizar con servidor
-        client_profile_name.text = server.name
-        client_profile_phone.text = server.phone
-        client_profile_email.text = server.email */
+        userToken=
+            Token.readToken(File((activity as ActivityClientMain).filesDir, Dataholder.FILENAME))
+        client_profile_name.text = userToken.name
+        client_profile_phone.text = userToken.phone
+        client_profile_email.text = userToken.email
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,9 +53,13 @@ class FragmentClientProfile : Fragment() {
             (activity as ActivityClientMain).gotoActivity(ActivityClientProfileMod())
         }
         client_profile_log_out.setOnClickListener {
-            //TODO log outuser
+            /*TODO arreglar delete
+               Log.v("miapp", "no pasa")
+            val file = File((activity as ActivityClientMain).filesDir, Dataholder.FILENAME)
+            Log.v("miapp", "pasa"+file.toString())
+            (activity as ActivityClientMain).deleteFile(Dataholder.FILENAME)
             (activity as ActivityClientMain).gotoActivity(ActivityAnimation())
-            (activity as ActivityClientMain).finish()
+            (activity as ActivityClientMain).finish()*/
         }
     }
 

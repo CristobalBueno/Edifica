@@ -31,11 +31,10 @@ class ActivityBusinessAdsDetails : BaseActivity() {
     }
 
     fun updateView() {
-        // TODO SANTANA
-        // TODO NADA DE DATAHOLDER, TODO O MEMORIA INTERNA O BASE DE DATOS
+
         val currentAds = Dataholder.currentAds
 
-        textView_name.text = currentAds.userClient.name
+        textView_name.text = currentAds.user.name
         textView_settlement.text = currentAds.settlement
         textView_province.text = currentAds.province
 
@@ -54,8 +53,6 @@ class ActivityBusinessAdsDetails : BaseActivity() {
         builder.setView(dialogView)
 
             .setPositiveButton(R.string.activity_business_ads_details_dialog_send_text) { dialog, id ->
-
-                //TODO falta añadir el aviso al cliente y la cuantía
 
                 if (offer.text.toString().isNotEmpty()) {
                     Toast.makeText(

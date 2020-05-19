@@ -107,7 +107,6 @@ class ActivityAnimation : BaseActivity() {
     fun loadUser() {
         val user = FirebaseAuth.getInstance().currentUser
         val file = File(filesDir, Dataholder.FILENAME)
-
         if (user != null) {
             userToken = readToken(file)
             if (userToken.uid == user.uid) {

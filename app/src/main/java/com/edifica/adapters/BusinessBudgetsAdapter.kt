@@ -46,7 +46,7 @@ class BusinessBudgetsAdapter (
 
 
             fun bindItems(data: Ads) {
-                clientName.text = data.userClient.name
+                clientName.text = data.user.name
                 settlement.text = data.settlement
                 province.text = data.province
                 fInfo.text = data.formInfo
