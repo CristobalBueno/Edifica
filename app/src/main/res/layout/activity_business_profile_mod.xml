@@ -6,24 +6,37 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".activities.clients.ActivityClientProfileMod">
+    tools:context=".activities.business.ActivityBusinessProfileMod">
 
     <Button
-        android:id="@+id/client_profile_mod_name"
+        android:id="@+id/business_profile_mod_photo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:backgroundTint="@color/colorRed" />
 
     <Button
-        android:id="@+id/client_profile_mod_email"
+        android:id="@+id/business_profile_mod_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
         android:backgroundTint="@color/colorRed" />
 
     <Button
-        android:id="@+id/client_profile_delete_User"
+        android:id="@+id/business_profile_mod_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:backgroundTint="@color/colorRed" />
+    <Button
+        android:id="@+id/business_profile_mod_web"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:backgroundTint="@color/colorRed" />
+
+    <Button
+        android:id="@+id/business_profile_mod_delete_User"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

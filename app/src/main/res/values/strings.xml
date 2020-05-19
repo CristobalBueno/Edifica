@@ -108,9 +108,40 @@
     <string name="activity_client_profile_mod_change_email_button">"Cambiar el e-mail"</string>
     <string name="activity_client_profile_mod_delete_User">"Eliminar usuario"</string>
 
+    <!-- FragmentBusinessProfile -->
+    <string name="fragment_business_profile_name">"Name"</string>
+    <string name="fragment_business_profile_phone">"Phone"</string>
+    <string name="fragment_business_profile_email">"Email"</string>
+    <string name="fragment_business_profile_web">"Web"</string>
+    <string name="fragment_business_profile_ads">"Mostrar mis presupuestos"</string>
+    <string name="fragment_business_profile_mod">"Modificar perfil"</string>
+    <string name="fragment_business_profile_log_out">"Cerrar sesión"</string>
 
+    <!-- ActivityBusinessProfileBudgets -->
+    <string name="activity_business_profile_budgets_question_alert_dialog">"¿Quieres eliminar el trabajo?"</string>
+    <string name="activity_business_profile_budgets_affirmative_alert_dialog">"Eliminar"</string>
+    <string name="activity_business_profile_budgets_negative_alert_dialog">"Cancelar"</string>
+    <string name="activity_business_profile_budgets_action_alert_dialog">"Eliminar trabajo"</string>
 
-
+    <!-- ActivityBusinessProfileMod -->
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_photo">"Cambiar la foto"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_name">"Cambiar el nombre"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_email">"Cambiar el email"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_web">"Cambiar la direccion web"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_delete_User">"Eliminar la cuenta"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_denied_permission_photo">""</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_hint_change_name">"Introduzca el nuevo nombre"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_affirmative_change_name">"Si"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_negative_change_name">"No"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_question_change_name">"¿Desea cambiar el nombre?"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_hint_change_email">"Introduzca el nuevo email"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_affirmative_change_email">"Si"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_negative_change_email">"No"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_question_change_email">"¿Desea cambiar el email?"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_hint_change_web">"Introduzca su nueva direccion"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_affirmative_change_web">"Si"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_negative_change_web">"No"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_question_change_web">"¿Desea cambiar su nueva direccion web?"</string>
 
     <!-- main_search -->
     <string name="text_search">Buscar</string>

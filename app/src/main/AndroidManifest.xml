@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.business.ActivityBusinessAdsDetails"></activity>
+        <activity android:name=".activities.business.ActivityBusinessProfileBudgets"></activity>
+        <activity android:name=".activities.business.ActivityBusinessProfileMod" />
+        <activity android:name=".activities.business.ActivityBusinessAdsDetails" />
         <activity android:name=".activities.clients.ActivityClientProfileMod" />
         <activity android:name=".activities.clients.ActivityClientAds" />
         <activity android:name=".activities.business.ActivityBusinessProfile" />
@@ -40,11 +42,8 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-
             </intent-filter>
-
         </activity>
-
     </application>
 
 </manifest>

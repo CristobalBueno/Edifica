@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".activities.clients.ActivityClientAds">
+    tools:context=".activities.business.ActivityBusinessProfileBudgets">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/ads_RecyclerView"
+        android:id="@+id/budgets_RecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="10dp"/>
-
 
 </LinearLayout>

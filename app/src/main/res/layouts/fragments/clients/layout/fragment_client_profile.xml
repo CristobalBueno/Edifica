@@ -22,15 +22,15 @@
                     android:id="@+id/client_profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingHorizontal="8dp"
+                    android:paddingHorizontal="10dp"
                     android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <TextView
                     android:id="@+id/client_profile_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:paddingHorizontal="8dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="10dp"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
 
@@ -38,8 +38,8 @@
                     android:id="@+id/client_profile_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:paddingHorizontal="8dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingHorizontal="10dp"
                     android:textAppearance="?attr/textAppearanceBody2"
                     android:textColor="?android:attr/textColorSecondary" />
 
