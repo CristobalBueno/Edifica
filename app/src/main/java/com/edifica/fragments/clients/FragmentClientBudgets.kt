@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
 import com.edifica.adapters.TransactionsClientAdapter
 import com.edifica.interfaces.TransactionListener
-import com.edifica.models.Dataholder
-import com.edifica.models.Token
-import com.edifica.models.Transactions
-import com.edifica.models.User
+import com.edifica.models.*
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Transaction
@@ -38,15 +35,17 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
         val rootView: View =
             inflater.inflate(R.layout.fragment_client_budgets, container, false)
 
-        val recyclerView = rootView.findViewById<RecyclerView>(R.id.recycler_client_budgets)
-
-        val mAdapter = TransactionsClientAdapter(transactions, this)
-        recyclerView.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recyclerView.adapter = mAdapter
-
         return rootView
 
+    }
+
+    fun loadAdapter() {
+        val recyclerView = activity?.findViewById<RecyclerView>(R.id.recycler_client_budgets)
+        val mAdapter = TransactionsClientAdapter(transactions, this)
+
+        recyclerView?.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recyclerView?.adapter = mAdapter
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -56,11 +55,36 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
             .get()
             .addOnSuccessListener { result ->
                 for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
+                    var ads: Ads? = null
+                    var user: User? = null
+                    var business: User? = null
+                    var transaction: Transactions? = null
+
+                    var documentReference =
+                        (document["ads"] as DocumentReference).get().addOnCompleteListener {
+                            ads = it.result?.toObject(Ads::class.java)
+                            var documentReferenceTwo =
+                                it.result?.getDocumentReference("user")?.get()
+                                    ?.addOnCompleteListener {
+                                        user = it.result?.toObject(User::class.java)
+
+                                        (document["business"] as DocumentReference).get()
+                                            .addOnCompleteListener {
+                                                business = it.result?.toObject(User::class.java)
+
+                                                ads?.user = user!!
+                                                Log.d("Transaction", "$ads => $business")
+
+                                                transaction =
+                                                    Transactions(ads!!, business!!, 0, true)
+                                                Log.d("Transaction", transaction.toString())
+                                                transactions.add(transaction!!)
+                                                loadAdapter()
+                                            }
+                                    }
+                        }
+
                 }
-            }
-            .addOnFailureListener { exception ->
-                Log.d(TAG, "Error getting documents: ", exception)
             }
 
 
@@ -72,7 +96,7 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
     private fun loadTransactionsfromDataBase(): ArrayList<Transactions> {
         val query = db.collection("transaction")
         var dbAllAds: ArrayList<Transactions> = arrayListOf()
-        val token: Token = Token.readToken(File(context?.filesDir ,Dataholder.FILENAME))
+        val token: Token = Token.readToken(File(context?.filesDir, Dataholder.FILENAME))
 
         db.collection("transaction")
             .whereEqualTo("user", token.identifier)
