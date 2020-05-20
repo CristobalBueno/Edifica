@@ -2,6 +2,7 @@ package com.edifica.fragments.clients
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
 import com.edifica.activities.clients.ActivityClientFormulary
+import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.models.Guild
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.practica.proyect_no_name.Adapter.GridAdapter
@@ -49,8 +51,10 @@ class FragmentClientNeed : Fragment(), GridCustomListener {
 
         clientFloatingActionButton.setOnClickListener {
             var booleanArray : BooleanArray = booleanArrayOf()
+
             for (guild in guilds) {
                 booleanArray += guild.isChecked
+                Log.w("miapp","LOG: ${guild.isChecked}")
             }
 
             val intent = Intent(context, ActivityClientFormulary::class.java)
