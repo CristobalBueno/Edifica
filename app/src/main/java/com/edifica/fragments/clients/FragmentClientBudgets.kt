@@ -12,6 +12,7 @@ import com.edifica.R
 import com.edifica.adapters.TransactionsClientAdapter
 import com.edifica.interfaces.TransactionListener
 import com.edifica.models.*
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Transaction
@@ -25,6 +26,7 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
 
     var transactions: ArrayList<Transactions> = arrayListOf()
     var db = FirebaseFirestore.getInstance()
+    var auth = FirebaseAuth.getInstance()
     val TAG = "miApp"
 
     override fun onCreateView(
@@ -58,7 +60,7 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
                     var ads: Ads? = null
                     var user: User? = null
                     var business: User? = null
-                    var transaction: Transactions? = null
+                    var transaction: Transactions? = document.toObject(Transactions::class.java)
 
                     var documentReference =
                         (document["ads"] as DocumentReference).get().addOnCompleteListener {
@@ -68,26 +70,25 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
                                     ?.addOnCompleteListener {
                                         user = it.result?.toObject(User::class.java)
 
-                                        (document["business"] as DocumentReference).get()
-                                            .addOnCompleteListener {
-                                                business = it.result?.toObject(User::class.java)
+                                        if (user?.uid == auth.currentUser?.uid) {
+                                            (document["business"] as DocumentReference).get()
+                                                .addOnCompleteListener {
+                                                    business = it.result?.toObject(User::class.java)
 
-                                                ads?.user = user!!
-                                                Log.d("Transaction", "$ads => $business")
+                                                    ads?.user = user!!
+                                                    Log.d("Transaction", "$ads => $business")
 
-                                                transaction =
-                                                    Transactions(ads!!, business!!, 0, true)
-                                                Log.d("Transaction", transaction.toString())
-                                                transactions.add(transaction!!)
-                                                loadAdapter()
-                                            }
+                                                    transaction?.userBusiness = business!!
+                                                    transaction?.ad = ads!!
+                                                    Log.d("Transaction", transaction.toString())
+                                                    transactions.add(transaction!!)
+                                                    loadAdapter()
+                                                }
+                                        }
                                     }
                         }
-
                 }
             }
-
-
     }
 
     override fun onItemClick(Transaction: Transactions, position: Int) {

@@ -3,10 +3,10 @@ package com.edifica.models
 import com.google.firebase.firestore.Exclude
 
 class Transactions (
-    @get:Exclude val ad: Ads,
-    @get:Exclude val userBusiness: User,
-    val price: Int,
-    val isAccepted:Boolean
+    @get:Exclude var ad: Ads = Ads(),
+    @get:Exclude var userBusiness: User = User(),
+    var price: Float = 0F,
+    var isAccepted:Boolean = false
 ) {
     override fun toString(): String {
         return "Transactions(ad=$ad, userBusiness=$userBusiness, price=$price, isAccepted=$isAccepted)"
