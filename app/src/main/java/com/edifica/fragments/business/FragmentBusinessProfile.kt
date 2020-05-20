@@ -9,13 +9,20 @@ import com.edifica.R
 import com.edifica.activities.business.ActivityBusinessMain
 import com.edifica.activities.business.ActivityBusinessProfileMod
 import com.edifica.activities.business.ActivityBusinessProfileBudgets
+import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityAnimation
+import com.edifica.models.Dataholder
+import com.edifica.models.Token
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_business_profile.*
+import java.io.File
 
 /**
  * A simple [Fragment] subclass.
  */
 class FragmentBusinessProfile : Fragment() {
+
+    val auth: FirebaseAuth = FirebaseAuth.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +53,10 @@ class FragmentBusinessProfile : Fragment() {
             (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessProfileMod())
         }
         business_profile_log_out.setOnClickListener {
+
+            Token.deleteToken(File(context?.filesDir, Dataholder.FILENAME))
+            auth.signOut()
+
             (activity as ActivityBusinessMain).gotoActivity(ActivityAnimation())
             (activity as ActivityBusinessMain).finish()
         }

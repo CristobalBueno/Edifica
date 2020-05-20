@@ -10,7 +10,6 @@ import com.edifica.R
 import com.edifica.activities.business.ActivityClientBusinessProfile
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.adapters.SearchBusinessAdapter
-import com.edifica.models.Business
 import com.edifica.models.User
 import com.google.firebase.firestore.FirebaseFirestore
 import com.practica.proyect_no_name.Interface.CustomItemListener
@@ -24,7 +23,7 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
     private lateinit var businessAdapter: SearchBusinessAdapter
     val TAG = "miapp"
     var db = FirebaseFirestore.getInstance()
-    var allBusiness = arrayListOf<Business>()
+    private var allBusiness = arrayListOf<User>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,12 +46,12 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
         allBusiness = loadAllBusinessDataBase()
     }
 
-    override fun onItemClick(currentBusiness: Business, position: Int) {
+    override fun onItemClick(currentUser: User, position: Int) {
         //TODO CRISTOBAL
         (activity as ActivityClientMain).gotoActivity(
             ActivityClientBusinessProfile(),
             true,
-            currentBusiness
+            currentUser
         )
     }
 
@@ -83,17 +82,16 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    fun loadAllBusinessDataBase(): ArrayList<Business> {
+    fun loadAllBusinessDataBase(): ArrayList<User> {
         val query = db.collection("users").whereEqualTo("identifier", 1)
-        var dbAllbusiness: ArrayList<Business> = arrayListOf()
+        var dbAllUsers: ArrayList<User> = arrayListOf()
 
         query.get().addOnSuccessListener { documents ->
             if (documents != null) {
                 for (document in documents) {
                     var user: User = document.toObject(User::class.java)
-                    var business = Business(user.name, user.phone, user.email, user.image, user.ratings, user.web)
-                    Log.e("error", business.toString())
-                    dbAllbusiness.add(business)
+
+                    dbAllUsers.add(user)
                 }
                 search()
             } else {
@@ -102,6 +100,6 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
         }.addOnFailureListener { exception ->
             Log.d(TAG, "get failed with", exception)
         }
-        return dbAllbusiness
+        return dbAllUsers
     }
 }

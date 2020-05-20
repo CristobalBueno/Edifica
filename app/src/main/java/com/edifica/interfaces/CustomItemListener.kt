@@ -1,7 +1,7 @@
 package com.practica.proyect_no_name.Interface
 
-import com.edifica.models.Business
+import com.edifica.models.User
 
 interface CustomItemListener {
-    fun onItemClick(currentBusiness: Business, position: Int)
+    fun onItemClick(currentUser: User, position: Int)
 }

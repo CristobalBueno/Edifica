@@ -1,5 +1,6 @@
 package com.edifica.fragments.business
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.*
@@ -23,13 +24,11 @@ import kotlinx.android.synthetic.main.fragment_business_ads.*
  */
 class FragmentBusinessAds : Fragment(), CustomAdsListener {
 
-    // TODO SANTANA
-    // TODO COGEIS DE BASE DE DATOS
 
     private lateinit var adsAdapter: SearchAdsAdapter
-    val TAG = "miapp"
     var db = FirebaseFirestore.getInstance()
     var allAds = arrayListOf<Ads>()
+    val ADV = "adv"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,11 +54,10 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
     }
 
     override fun onItemAdsClick(currentAds: Ads, position: Int) {
-        // TODO SANTANA
-        // TODO LO REFERENTE A DATAHOLDER LO QUIERO FUERA, O LO COGEIS DE BASE DE DATOS O DE
-        // TODO MEMORIA INTERNA
-        Dataholder.currentAds = currentAds
-        (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessAdsDetails())
+        var intent: Intent = Intent(context, ActivityBusinessAdsDetails::class.java)
+        intent.putExtra(ADV, currentAds)
+
+        startActivity(intent)
     }
 
     fun search() {
@@ -106,19 +104,19 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
                     userAux.get().addOnCompleteListener{
                         user = it.result?.toObject(User::class.java)
 
-                        Log.d(TAG, user.toString())
-                        add.user = user!!
+                        if (user != null) {
+                            add.user = user!!
+                        }
                         dbAllAds.add(add)
                         search()
-                        Log.d(TAG, dbAllAds[0].toString())
                     }
                 }
 
             } else {
-                Log.d(TAG, "no such document")
+                Log.d("loadAllAdsDataBase", "no such document")
             }
         }.addOnFailureListener { exception ->
-            Log.d(TAG, "get failed with", exception)
+            Log.d("loadAllAdsDataBase", "get failed with", exception)
         }
         return dbAllAds
     }

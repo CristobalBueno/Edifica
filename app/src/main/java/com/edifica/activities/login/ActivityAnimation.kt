@@ -108,27 +108,32 @@ class ActivityAnimation : BaseActivity() {
         val user = FirebaseAuth.getInstance().currentUser
         val file = File(filesDir, Dataholder.FILENAME)
         if (user != null) {
-            userToken = readToken(file)
-            if (userToken.uid == user.uid) {
-                val query = db.collection("users").document(auth.currentUser?.uid!!)
-                var dbUser: User?
 
-                token = true
+            if (file.exists()) {
+                userToken = readToken(file)
+            } else {
+                userToken = Token()
+            }
 
-                query.get().addOnSuccessListener { document ->
-                    dbUser = document.toObject(User::class.java)
-                    Log.e("debug",dbUser.toString())
+            val query = db.collection("users").document(auth.currentUser?.uid!!)
+            var dbUser: User?
 
-                    userToken.name = dbUser?.name.toString()
-                    userToken.phone = dbUser?.phone.toString()
-                    userToken.identifier = dbUser?.identifier!!
-                    userToken.email = dbUser?.email.toString()
+            token = true
 
-                    Log.e("debug",userToken.toString())
-                    Log.d("debug","success updating data")
-                }.addOnFailureListener { exception ->
-                    Log.d("debug","get failed with", exception)
-                }
+            query.get().addOnSuccessListener { document ->
+                dbUser = document.toObject(User::class.java)
+                Log.e("debug",dbUser.toString())
+
+                userToken.name = dbUser?.name.toString()
+                userToken.phone = dbUser?.phone.toString()
+                userToken.identifier = dbUser?.identifier!!
+                userToken.email = dbUser?.email.toString()
+                userToken.uid = dbUser!!.uid
+
+                Log.e("debug",userToken.toString())
+                Log.d("debug","success updating data")
+            }.addOnFailureListener { exception ->
+                Log.d("debug","get failed with", exception)
             }
         }
     }

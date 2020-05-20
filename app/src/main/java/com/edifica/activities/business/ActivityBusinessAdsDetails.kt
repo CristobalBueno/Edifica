@@ -3,9 +3,11 @@ package com.edifica.activities.business
 import android.content.DialogInterface
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import android.widget.Toast
 import com.edifica.R
 import com.edifica.abstract.BaseActivity
+import com.edifica.models.Ads
 import com.edifica.models.Dataholder
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.squareup.picasso.Picasso
@@ -13,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_business_ads_details.*
 import kotlinx.android.synthetic.main.alert_dialog_offer.view.*
 
 class ActivityBusinessAdsDetails : BaseActivity() {
+
+    val ADV = "adv"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,13 +35,11 @@ class ActivityBusinessAdsDetails : BaseActivity() {
     }
 
     fun updateView() {
-
-        val currentAds = Dataholder.currentAds
+        var currentAds: Ads = intent.getSerializableExtra(ADV) as Ads
 
         textView_name.text = currentAds.user.name
         textView_settlement.text = currentAds.settlement
         textView_province.text = currentAds.province
-
         textView_formulary.text = currentAds.formInfo
 
         Picasso.get().load(currentAds.images[0]).into(imageView_photos)

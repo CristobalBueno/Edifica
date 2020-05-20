@@ -7,13 +7,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
-import com.edifica.models.Business
+import com.edifica.models.User
 import com.practica.proyect_no_name.Interface.CustomItemListener
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_search_business.view.*
 
-class SearchBusinessAdapter(private val data: List<Business>, private val onItemClick: CustomItemListener) : RecyclerView.Adapter<SearchBusinessAdapter.MyViewHolder>() {
-    private var filtered: ArrayList<Business> = arrayListOf()
+class SearchBusinessAdapter(private val data: List<User>, private val onItemClick: CustomItemListener) : RecyclerView.Adapter<SearchBusinessAdapter.MyViewHolder>() {
+    private var filtered: ArrayList<User> = arrayListOf()
     init {
         filtered.addAll(data)
     }
@@ -42,7 +42,7 @@ class SearchBusinessAdapter(private val data: List<Business>, private val onItem
     fun filter(text: String) {
 
         if (text.isNotEmpty()) {
-            filtered = data.filter { it.name.toUpperCase().contains(text.toUpperCase()) } as ArrayList<Business>
+            filtered = data.filter { it.name.toUpperCase().contains(text.toUpperCase()) } as ArrayList<User>
 
             if (filtered.isNullOrEmpty()) {
                 filtered.clear()
@@ -60,7 +60,7 @@ class SearchBusinessAdapter(private val data: List<Business>, private val onItem
         private val textemailbusiness = view.findViewById(R.id.text_email_business)as TextView
         private val imagebusiness = view.findViewById(R.id.image_business)as ImageView
 
-        fun show(data: Business) {
+        fun show(data: User) {
             textnamebusiness.text = data.name
             textemailbusiness.text = data.email
             if (data.image.isNotEmpty()) {

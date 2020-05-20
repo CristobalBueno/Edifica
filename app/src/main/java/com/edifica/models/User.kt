@@ -1,6 +1,8 @@
 package com.edifica.models
 
 import com.google.firebase.database.PropertyName
+import com.google.firebase.firestore.DocumentId
+import java.io.Serializable
 
 class User(
     @PropertyName("email") var email: String = "",
@@ -9,9 +11,11 @@ class User(
     @PropertyName("phone") var phone: String = "",
     @PropertyName("image") var image: String = "",
     @PropertyName("rating") var ratings: ArrayList<Float> = arrayListOf(0F, 0F, 0F, 0F, 0F, 0F),
-    @PropertyName("web") var web: String = ""
-) {
+    @PropertyName("ratingsCount") var ratingsCount: Int = 0,
+    @PropertyName("web") var web: String = "",
+    @DocumentId var uid: String = ""
+) : Serializable {
     override fun toString(): String {
-        return "User(email='$email', identifier=$identifier, name='$name', phone='$phone', image='$image', ratings=$ratings, web='$web')"
+        return "User(email='$email', identifier=$identifier, name='$name', phone='$phone', image='$image', ratings=$ratings, ratingsCount=$ratingsCount, web='$web')"
     }
 }
