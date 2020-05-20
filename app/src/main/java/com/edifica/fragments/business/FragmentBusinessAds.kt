@@ -101,9 +101,11 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
                     var userAux: DocumentReference = document["user"] as DocumentReference
                     var add: Ads = document.toObject(Ads::class.java)
 
+                    Log.e("e", (document["user"] as DocumentReference).id )
                     userAux.get().addOnCompleteListener{
                         user = it.result?.toObject(User::class.java)
 
+                        Log.e("e", user.toString())
                         if (user != null) {
                             add.user = user!!
                         }
