@@ -6,12 +6,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
-import com.edifica.fragments.clients.FragmentClientBudgets
+import com.edifica.interfaces.TransactionListener
 import com.edifica.models.Transactions
+import kotlinx.android.synthetic.main.item_transaction_client.view.*
 
 class TransactionsClientAdapter(
     private val mDataSet: List<Transactions>?,
-    private val transactionListener: FragmentClientBudgets
+    private val transactionListener: TransactionListener
 ) :
     RecyclerView.Adapter<TransactionsClientAdapter.MainViewHolder>() {
 
@@ -22,9 +23,24 @@ class TransactionsClientAdapter(
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
+
         val data = mDataSet?.get(position)
-        data?.let { transactionListener ->
-            holder.bindItems(transactionListener)
+
+        data?.let {
+            holder.bindItems(it)
+        }
+
+        holder.itemView.accept_item_transaction_client.setOnClickListener {
+            transactionListener.acceptOnItemClick(data!!, position)
+        }
+
+        holder.itemView.cancel_item_transaction_client.setOnClickListener {
+            holder.itemView.visibility = View.GONE
+            transactionListener.cancelOnItemClick(data!!, position)
+        }
+
+        holder.itemView.chat_item_transaction_client.setOnClickListener {
+            transactionListener.chatOnItemClick(data!!, position)
         }
     }
 

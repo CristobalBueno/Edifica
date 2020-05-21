@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
@@ -25,6 +26,8 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
     var db = FirebaseFirestore.getInstance()
     var auth = FirebaseAuth.getInstance()
     val TAG = "miApp"
+    var recyclerView: RecyclerView? = null
+    lateinit var mAdapter: RecyclerView.Adapter<TransactionsClientAdapter.MainViewHolder>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,12 +38,11 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
             inflater.inflate(R.layout.fragment_client_budgets, container, false)
 
         return rootView
-
     }
 
     fun loadAdapter() {
-        val recyclerView = activity?.findViewById<RecyclerView>(R.id.recycler_client_budgets)
-        val mAdapter = TransactionsClientAdapter(transactions, this)
+        recyclerView = activity?.findViewById<RecyclerView>(R.id.recycler_client_budgets)
+        mAdapter = TransactionsClientAdapter(transactions, this)
         recyclerView?.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView?.adapter = mAdapter
@@ -56,6 +58,7 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
                     var user: User? = null
                     var business: User? = null
                     var transaction: Transactions? = document.toObject(Transactions::class.java)
+                    Log.d("Transaction", "${transaction.toString()}")
 
                     var documentReference =
                         (document["ads"] as DocumentReference).get().addOnCompleteListener {
@@ -86,7 +89,27 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
             }
     }
 
-    override fun onItemClick(Transaction: Transactions, position: Int) {
+
+    override fun acceptOnItemClick(transaction: Transactions, position: Int) {
+        transaction.isAccepted = true
+
+        db.collection("transaction").document(transaction.id).update(
+            "isAccepted", true
+        )
+
+        loadAdapter()
+    }
+
+    override fun cancelOnItemClick(transaction: Transactions, position: Int) {
+        db.collection("transaction").document(transaction.id).delete()
+
+        transactions.remove(transaction)
+
+        loadAdapter()
+    }
+
+    override fun chatOnItemClick(transaction: Transactions, position: Int) {
+        TODO("Not yet implemented")
     }
 
 }
