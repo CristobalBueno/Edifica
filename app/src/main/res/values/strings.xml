@@ -128,7 +128,6 @@
     <string name="fragment_business_profile_phone">"Phone"</string>
     <string name="fragment_business_profile_email">"Email"</string>
     <string name="fragment_business_profile_web">"Web"</string>
-    <string name="fragment_business_profile_ads">"Mostrar mis presupuestos"</string>
     <string name="fragment_business_profile_mod">"Modificar perfil"</string>
     <string name="fragment_business_profile_log_out">"Cerrar sesión"</string>
 

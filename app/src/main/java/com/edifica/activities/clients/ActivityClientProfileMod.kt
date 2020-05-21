@@ -2,11 +2,14 @@ package com.edifica.activities.clients
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import com.edifica.R
 import com.edifica.abstract.BaseActivity
 import com.edifica.activities.login.ActivityAnimation
 import com.edifica.models.Dataholder
 import com.edifica.models.Token
+import com.edifica.models.Token.Companion.readToken
+import com.edifica.models.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -72,6 +75,30 @@ class ActivityClientProfileMod : BaseActivity() {
 
         dialogBuilder.setTitle(R.string.activity_client_profile_mod_question_change_name)
         dialogBuilder.setCancelable(false).create().show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        var userToken = readToken(File(filesDir, Dataholder.FILENAME))
+
+        val query = db.collection("users").document(auth.currentUser?.uid.toString())
+        query.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var myUser = document.toObject(User::class.java)
+                if (myUser != null) {
+                    userToken.name= myUser.name
+                    userToken.phone = myUser.phone
+                    userToken.email = myUser.email
+                    userToken.saveToken(File(filesDir , Dataholder.FILENAME))
+                }
+            } else {
+                Log.d("miapp", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("miapp", "get failed with ", exception)
+
+        }
     }
 
     private fun changeEmail() {

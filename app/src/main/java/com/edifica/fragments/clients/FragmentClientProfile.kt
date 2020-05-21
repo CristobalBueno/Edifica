@@ -14,6 +14,7 @@ import com.edifica.activities.login.ActivityAnimation
 import com.edifica.models.Dataholder
 import com.edifica.models.Token
 import com.edifica.models.Token.Companion.deleteToken
+import com.edifica.models.Token.Companion.readToken
 import com.edifica.models.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +24,6 @@ import java.io.File
 
 class FragmentClientProfile : Fragment() {
 
-    lateinit var userToken: Token
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
     var db = FirebaseFirestore.getInstance()
 
@@ -37,22 +37,13 @@ class FragmentClientProfile : Fragment() {
     }
 
     override fun onResume() {
+
         super.onResume()
-        val query = db.collection("users").document(auth.currentUser?.uid.toString())
-        query.get().addOnSuccessListener { document ->
-            if (document != null) {
-                var myUser = document.toObject(User::class.java)
-                if (myUser != null) {
-                    client_profile_name.text = myUser.name
-                    client_profile_phone.text = myUser.phone
-                    client_profile_email.text = myUser.email
-                }
-            } else {
-                Log.d("miapp", "No such document")
-            }
-        }.addOnFailureListener { exception ->
-            Log.d("miapp", "get failed with ", exception)
-        }
+        var userToken = readToken(File(context?.filesDir, Dataholder.FILENAME))
+
+        client_profile_name.text = userToken.name
+        client_profile_phone.text = userToken.phone
+        client_profile_email.text = userToken.email
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
