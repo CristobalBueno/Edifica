@@ -24,7 +24,6 @@ class Token(
         return "Token(name='$name', phone='$phone', email='$email', password='$password', uid='$uid', identifier=$identifier)"
     }
 
-
     companion object {
         fun readToken(file: File): Token {
 
