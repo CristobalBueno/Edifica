@@ -49,7 +49,7 @@ class TransactionsBusinessAdapter(
             price.text = data.price.toString() + " €"
 
             accept.visibility = View.INVISIBLE
-            cancel.visibility = View.INVISIBLE
+            cancel.visibility = View.VISIBLE
             chat.visibility = View.VISIBLE
 
         }

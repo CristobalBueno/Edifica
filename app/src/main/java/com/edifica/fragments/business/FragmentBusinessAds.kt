@@ -18,6 +18,7 @@ import com.edifica.models.User
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_business_ads.*
+import java.lang.Exception
 
 /**
  * A simple [Fragment] subclass.
@@ -61,10 +62,14 @@ class FragmentBusinessAds : Fragment(), CustomAdsListener {
     }
 
     fun search() {
-        mainRecyclerSeachAds.layoutManager = LinearLayoutManager(context)
-        adsAdapter = SearchAdsAdapter(allAds, this)
-        mainRecyclerSeachAds.adapter = adsAdapter
-        mainRecyclerSeachAds.visibility = View.VISIBLE
+        try {
+            mainRecyclerSeachAds.layoutManager = LinearLayoutManager(context)
+            adsAdapter = SearchAdsAdapter(allAds, this)
+            mainRecyclerSeachAds.adapter = adsAdapter
+            mainRecyclerSeachAds.visibility = View.VISIBLE
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

@@ -44,32 +44,42 @@ class FragmentBusinessChat : Fragment() {
                     var business: User? = null
                     var transaction: Transactions? = document.toObject(Transactions::class.java)
 
-                    var documentReference =
-                        (document["ads"] as DocumentReference).get().addOnCompleteListener {
-                            ads = it.result?.toObject(Ads::class.java)
-                            var documentReferenceTwo =
-                                it.result?.getDocumentReference("user")?.get()
-                                    ?.addOnCompleteListener {
-                                        user = it.result?.toObject(User::class.java)
+                    if (transaction?.isAccepted == true) {
+                        (document["business"] as DocumentReference).get()
+                            .addOnCompleteListener {
+                                business =
+                                    it.result?.toObject(User::class.java)
 
-                                        if (user?.uid == auth.currentUser?.uid) {
-                                            (document["business"] as DocumentReference).get()
-                                                .addOnCompleteListener {
-                                                    business = it.result?.toObject(User::class.java)
+                                if (business?.uid == auth.currentUser?.uid) {
+                                    var documentReference =
+                                        (document["ads"] as DocumentReference).get()
+                                            .addOnCompleteListener {
+                                                ads = it.result?.toObject(Ads::class.java)
+                                                var documentReferenceTwo =
+                                                    it.result?.getDocumentReference("user")?.get()
+                                                        ?.addOnCompleteListener {
+                                                            user =
+                                                                it.result?.toObject(User::class.java)
 
-                                                    ads?.user = user!!
-                                                    Log.d("Transaction", "$ads => $business")
+                                                            ads?.user = user!!
 
-                                                    transaction?.userBusiness = business!!
-                                                    transaction?.ad = ads!!
-                                                    Log.d("Transaction", transaction.toString())
-                                                    transactions.add(transaction!!)
-                                                    loadAdapter()
-                                                }
-                                        }
-                                    }
-                        }
+                                                            transaction?.userBusiness = business!!
+                                                            transaction?.ad = ads!!
+                                                            Log.d(
+                                                                "Transaction",
+                                                                transaction.toString()
+                                                            )
+                                                            transactions.add(transaction!!)
+                                                            loadAdapter()
+                                                        }
+                                            }
+                                }
+                            }
+
+                    }
+
                 }
+
             }
     }
 
