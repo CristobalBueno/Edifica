@@ -14,7 +14,9 @@ import com.edifica.activities.login.ActivityAnimation
 import com.edifica.models.Dataholder
 import com.edifica.models.Token
 import com.edifica.models.Token.Companion.deleteToken
+import com.edifica.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_client_profile.*
 import java.io.File
 
@@ -23,6 +25,7 @@ class FragmentClientProfile : Fragment() {
 
     lateinit var userToken: Token
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    var db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,11 +38,21 @@ class FragmentClientProfile : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        userToken=
-            Token.readToken(File((activity as ActivityClientMain).filesDir, Dataholder.FILENAME))
-        client_profile_name.text = userToken.name
-        client_profile_phone.text = userToken.phone
-        client_profile_email.text = userToken.email
+        val query = db.collection("users").document(auth.currentUser?.uid.toString())
+        query.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var myUser = document.toObject(User::class.java)
+                if (myUser != null) {
+                    client_profile_name.text = myUser.name
+                    client_profile_phone.text = myUser.phone
+                    client_profile_email.text = myUser.email
+                }
+            } else {
+                Log.d("miapp", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("miapp", "get failed with ", exception)
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,8 +67,8 @@ class FragmentClientProfile : Fragment() {
             (activity as ActivityClientMain).gotoActivity(ActivityClientProfileMod())
         }
         client_profile_log_out.setOnClickListener {
-            // TODO arreglar delete
-            Token.deleteToken(File(context?.filesDir, Dataholder.FILENAME))
+
+            deleteToken(File(context?.filesDir, Dataholder.FILENAME))
             auth.signOut()
 
             (activity as ActivityClientMain).gotoActivity(ActivityAnimation())
