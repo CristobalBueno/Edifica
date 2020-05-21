@@ -1,6 +1,7 @@
 package com.edifica.fragments.business
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +14,10 @@ import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityAnimation
 import com.edifica.models.Dataholder
 import com.edifica.models.Token
+import com.edifica.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_business_profile.*
 import java.io.File
 
@@ -23,6 +27,7 @@ import java.io.File
 class FragmentBusinessProfile : Fragment() {
 
     val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    var db = FirebaseFirestore.getInstance()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,13 +37,9 @@ class FragmentBusinessProfile : Fragment() {
         return inflater.inflate(R.layout.fragment_business_profile, container, false)
     }
 
-    override fun onResume() {
-        super.onResume()
-        /*//TODO sincronizar de base de datos
-        business_profile_name.text = DataHolder.name
-        business_profile_phone.text = DataHolder.phone
-        business_profile_email.text = DataHolder.email
-        business_profile_image.setImageURI(DataHolder.photo)*/
+    override fun onStart() {
+        super.onStart()
+        updateView()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,6 +60,26 @@ class FragmentBusinessProfile : Fragment() {
 
             (activity as ActivityBusinessMain).gotoActivity(ActivityAnimation())
             (activity as ActivityBusinessMain).finish()
+        }
+    }
+
+    fun updateView() {
+        val query = db.collection("users").document(auth.currentUser?.uid.toString())
+        query.get().addOnSuccessListener { document ->
+            if (document != null) {
+                var myUser = document.toObject(User::class.java)
+                if (myUser != null) {
+                    business_profile_name.text = myUser.name
+                    business_profile_phone.text = myUser.phone
+                    business_profile_email.text = myUser.email
+                    business_profile_web.text = myUser.web
+                    Picasso.get().load(myUser.image).into(business_profile_image)
+                }
+            } else {
+                Log.d("miapp", "No such document")
+            }
+        }.addOnFailureListener { exception ->
+            Log.d("miapp", "get failed with ", exception)
         }
     }
 

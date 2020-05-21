@@ -24,7 +24,7 @@
                 android:id="@+id/business_profile_image"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
-                android:scaleType="fitCenter"
+                android:scaleType="centerCrop"
                 app:srcCompat="@mipmap/logo"
                 tools:ignore="ContentDescription" />
 
