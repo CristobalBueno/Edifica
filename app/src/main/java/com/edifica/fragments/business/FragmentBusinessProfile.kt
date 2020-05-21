@@ -73,7 +73,8 @@ class FragmentBusinessProfile : Fragment() {
                     business_profile_phone.text = myUser.phone
                     business_profile_email.text = myUser.email
                     business_profile_web.text = myUser.web
-                    Picasso.get().load(myUser.image).into(business_profile_image)
+                    if(myUser.image != ""){
+                    Picasso.get().load(myUser.image).into(business_profile_image)}
                 }
             } else {
                 Log.d("miapp", "No such document")

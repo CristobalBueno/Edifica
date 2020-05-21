@@ -5,19 +5,26 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import com.edifica.R
 import com.edifica.abstract.BaseActivity
 import com.edifica.activities.login.ActivityAnimation
+import com.edifica.models.Dataholder
+import com.edifica.models.Token
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_business_profile_mod.*
-import kotlinx.android.synthetic.main.activity_business_profile_mod.view.*
 import kotlinx.android.synthetic.main.alert_dialog_profile_mod.view.*
-import kotlinx.android.synthetic.main.fragment_business_profile.*
+import java.io.File
 
 class ActivityBusinessProfileMod : BaseActivity() {
+
+    val auth: FirebaseAuth = FirebaseAuth.getInstance()
+    var db = FirebaseFirestore.getInstance()
+    val TAG = "debug"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -160,7 +167,16 @@ class ActivityBusinessProfileMod : BaseActivity() {
     }
 
     private fun deleteUser() {
-        //TODO borrar token y del servidor
+
+        Token.deleteToken(File(filesDir, Dataholder.FILENAME))
+
+        auth.currentUser?.delete()
+            ?.addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.d(TAG, "User account deleted.")
+                }
+            }
+
         gotoActivity(ActivityAnimation())
         finish()
     }
