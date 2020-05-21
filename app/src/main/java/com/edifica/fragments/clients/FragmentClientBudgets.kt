@@ -15,9 +15,6 @@ import com.edifica.models.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Transaction
-import kotlinx.android.synthetic.main.fragment_client_budgets.*
-import java.io.File
 
 /**
  * A simple [Fragment] subclass.
@@ -44,7 +41,6 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
     fun loadAdapter() {
         val recyclerView = activity?.findViewById<RecyclerView>(R.id.recycler_client_budgets)
         val mAdapter = TransactionsClientAdapter(transactions, this)
-
         recyclerView?.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView?.adapter = mAdapter
@@ -52,7 +48,6 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        transactions = loadTransactionsfromDataBase()
         db.collection("transaction")
             .get()
             .addOnSuccessListener { result ->
@@ -92,25 +87,6 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
     }
 
     override fun onItemClick(Transaction: Transactions, position: Int) {
-    }
-
-    private fun loadTransactionsfromDataBase(): ArrayList<Transactions> {
-        val query = db.collection("transaction")
-        var dbAllAds: ArrayList<Transactions> = arrayListOf()
-        val token: Token = Token.readToken(File(context?.filesDir, Dataholder.FILENAME))
-
-        db.collection("transaction")
-            .whereEqualTo("user", token.identifier)
-            .get()
-            .addOnSuccessListener { documents ->
-                for (document in documents) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents: ", exception)
-            }
-        return dbAllAds
     }
 
 }

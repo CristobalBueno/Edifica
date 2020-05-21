@@ -6,14 +6,14 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
-import com.edifica.fragments.clients.FragmentClientBudgets
+import com.edifica.fragments.business.FragmentBusinessChat
 import com.edifica.models.Transactions
 
-class TransactionsClientAdapter(
+class TransactionsBusinessAdapter(
     private val mDataSet: List<Transactions>?,
-    private val transactionListener: FragmentClientBudgets
+    private val transactionListener: FragmentBusinessChat
 ) :
-    RecyclerView.Adapter<TransactionsClientAdapter.MainViewHolder>() {
+    RecyclerView.Adapter<TransactionsBusinessAdapter.MainViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val v = LayoutInflater.from(parent.context)
@@ -43,19 +43,15 @@ class TransactionsClientAdapter(
         private val chat = v.findViewById(R.id.chat_item_transaction_client) as TextView
 
         fun bindItems(data: Transactions) {
-            userBusiness.text = data.userBusiness.name
+            userBusiness.text = data.ad.user.name
             settlement.text = data.ad.settlement
             province.text = data.ad.province
             price.text = data.price.toString() + " €"
-            if(!data.isAccepted){
-                accept.visibility = View.VISIBLE
-                cancel.visibility = View.VISIBLE
-                chat.visibility = View.INVISIBLE
-            }else if (data.isAccepted){
-                accept.visibility = View.INVISIBLE
-                cancel.visibility = View.INVISIBLE
-                chat.visibility = View.VISIBLE
-            }
+
+            accept.visibility = View.INVISIBLE
+            cancel.visibility = View.INVISIBLE
+            chat.visibility = View.VISIBLE
+
         }
     }
 }

@@ -26,7 +26,8 @@
                 <TextView
                     android:id="@+id/user_business_item_transaction_client"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?attr/textAppearanceHeadline6"/>
 
                 <TextView
                     android:id="@+id/settlement_item_transaction_client"
@@ -59,7 +60,8 @@
                 android:id="@+id/cancel_item_transaction_client"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorRed" />
+                android:backgroundTint="@color/colorRed"
+                android:text="@string/cancel_item_transaction"/>
 
             <Button
                 android:id="@+id/accept_item_transaction_client"
@@ -67,14 +69,16 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_toEndOf="@+id/cancel_item_transaction_client"
-                android:backgroundTint="@color/colorGreen" />
+                android:backgroundTint="@color/colorGreen"
+                android:text="@string/accept_item_transaction"/>
 
             <Button
                 android:id="@+id/chat_item_transaction_client"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:backgroundTint="@color/colorBlue" />
+                android:backgroundTint="@color/colorBlue"
+                android:text="@string/chat_item_transaction"/>
 
         </RelativeLayout>
 

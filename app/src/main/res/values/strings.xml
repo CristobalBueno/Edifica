@@ -158,6 +158,14 @@
     <string name="activity_business_profile_budgets_mod_business_profile_mod_negative_change_web">"No"</string>
     <string name="activity_business_profile_budgets_mod_business_profile_mod_question_change_web">"¿Desea cambiar su nueva direccion web?"</string>
 
+    <!--item transaction -->
+    <string name="cancel_item_transaction">"Cancelar"</string>
+    <string name="accept_item_transaction">"Aceptar"</string>
+    <string name="chat_item_transaction">"Chat"</string>
+
+
+
+
     <!-- main_search -->
     <string name="text_search">Buscar</string>
 
@@ -172,4 +180,5 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
