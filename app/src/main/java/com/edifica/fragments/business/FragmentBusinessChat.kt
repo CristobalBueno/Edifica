@@ -9,10 +9,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
+import com.edifica.activities.business.ActivityBusinessChat
+import com.edifica.activities.business.ActivityBusinessMain
 import com.edifica.adapters.TransactionsBusinessAdapter
+import com.edifica.interfaces.TransactionListener
 import com.edifica.models.Ads
 import com.edifica.models.Transactions
 import com.edifica.models.User
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,7 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 /**
  * A simple [Fragment] subclass.
  */
-class FragmentBusinessChat : Fragment() {
+class FragmentBusinessChat : Fragment() , TransactionListener {
 
     var transactions: ArrayList<Transactions> = arrayListOf()
     var db = FirebaseFirestore.getInstance()
@@ -83,12 +87,41 @@ class FragmentBusinessChat : Fragment() {
             }
     }
 
-    fun loadAdapter() {
+    private fun loadAdapter() {
         val recyclerView = activity?.findViewById<RecyclerView>(R.id.recycler_Business_Chat)
         val mAdapter = TransactionsBusinessAdapter(transactions, this)
         recyclerView?.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         recyclerView?.adapter = mAdapter
+    }
+
+    override fun acceptOnItemClick(transaction: Transactions, position: Int) {}
+
+    override fun cancelOnItemClick(transaction: Transactions, position: Int) {
+
+        val dialogBuilder = MaterialAlertDialogBuilder(context, R.style.MyMaterialAlertDialog)
+
+        dialogBuilder.setMessage(R.string.fragment_business_profile_chat_question_delete_alert_dialog)
+            .setPositiveButton(R.string.fragment_business_profile_chat_affirmative_delete_alert_dialog) { _, _ ->
+                db.collection("transaction").document(transaction.id).delete()
+
+                transactions.remove(transaction)
+
+                loadAdapter()
+            }
+            .setNegativeButton(R.string.fragment_business_profile_chat_negative_delete_alert_dialog) { dialog, _ ->
+                dialog.cancel()
+            }
+
+        val alert = dialogBuilder.create()
+
+        alert.setTitle(R.string.fragment_business_profile_chat_action_delete_alert_dialog)
+        alert.show()
+
+    }
+
+    override fun chatOnItemClick(transaction: Transactions, position: Int) {
+        (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessChat())
     }
 
 }
