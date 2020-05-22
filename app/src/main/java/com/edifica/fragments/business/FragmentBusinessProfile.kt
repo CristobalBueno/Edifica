@@ -9,8 +9,6 @@ import android.view.ViewGroup
 import com.edifica.R
 import com.edifica.activities.business.ActivityBusinessMain
 import com.edifica.activities.business.ActivityBusinessProfileMod
-import com.edifica.activities.business.ActivityBusinessProfileBudgets
-import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityAnimation
 import com.edifica.models.Dataholder
 import com.edifica.models.Token
@@ -47,9 +45,6 @@ class FragmentBusinessProfile : Fragment() {
 
         setDefaultLayout()
 
-        business_profile_ads.setOnClickListener {
-            (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessProfileBudgets())
-        }
         business_profile_mod.setOnClickListener {
             (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessProfileMod())
         }
@@ -92,7 +87,6 @@ class FragmentBusinessProfile : Fragment() {
         business_profile_phone.setText(R.string.fragment_business_profile_phone)
         business_profile_email.setText(R.string.fragment_business_profile_email)
         business_profile_web.setText(R.string.fragment_business_profile_web)
-        business_profile_ads.setText(R.string.fragment_business_profile_ads)
         business_profile_mod.setText(R.string.fragment_business_profile_mod)
         business_profile_log_out.setText(R.string.fragment_business_profile_log_out)
     }

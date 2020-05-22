@@ -7,11 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
 import com.edifica.fragments.business.FragmentBusinessChat
+import com.edifica.interfaces.TransactionListener
 import com.edifica.models.Transactions
+import kotlinx.android.synthetic.main.item_transaction_client.view.*
 
 class TransactionsBusinessAdapter(
     private val mDataSet: List<Transactions>?,
-    private val transactionListener: FragmentBusinessChat
+    private val transactionListener: TransactionListener
 ) :
     RecyclerView.Adapter<TransactionsBusinessAdapter.MainViewHolder>() {
 
@@ -25,6 +27,14 @@ class TransactionsBusinessAdapter(
         val data = mDataSet?.get(position)
         data?.let { transactionListener ->
             holder.bindItems(transactionListener)
+        }
+
+        holder.itemView.cancel_item_transaction_client.setOnClickListener {
+            transactionListener.cancelOnItemClick(data!!, position)
+        }
+
+        holder.itemView.chat_item_transaction_client.setOnClickListener {
+            transactionListener.chatOnItemClick(data!!, position)
         }
     }
 

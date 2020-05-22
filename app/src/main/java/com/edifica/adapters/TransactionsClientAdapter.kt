@@ -35,7 +35,6 @@ class TransactionsClientAdapter(
         }
 
         holder.itemView.cancel_item_transaction_client.setOnClickListener {
-            holder.itemView.visibility = View.GONE
             transactionListener.cancelOnItemClick(data!!, position)
         }
 
@@ -69,7 +68,7 @@ class TransactionsClientAdapter(
                 chat.visibility = View.INVISIBLE
             }else if (data.isAccepted){
                 accept.visibility = View.INVISIBLE
-                cancel.visibility = View.INVISIBLE
+                cancel.visibility = View.VISIBLE
                 chat.visibility = View.VISIBLE
             }
         }

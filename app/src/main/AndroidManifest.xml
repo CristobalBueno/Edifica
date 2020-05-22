@@ -13,8 +13,8 @@
         android:roundIcon="@mipmap/iconlogo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.clients.ActivityClientChat"></activity>
-        <activity android:name=".activities.business.ActivityBusinessProfileBudgets" />
+        <activity android:name=".activities.business.ActivityBusinessChat"></activity>
+        <activity android:name=".activities.clients.ActivityClientChat" />
         <activity android:name=".activities.business.ActivityBusinessProfileMod" />
         <activity android:name=".activities.business.ActivityBusinessAdsDetails" />
         <activity android:name=".activities.clients.ActivityClientProfileMod" />

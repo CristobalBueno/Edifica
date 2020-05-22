@@ -128,9 +128,24 @@
     <string name="fragment_business_profile_phone">"Phone"</string>
     <string name="fragment_business_profile_email">"Email"</string>
     <string name="fragment_business_profile_web">"Web"</string>
-    <string name="fragment_business_profile_ads">"Mostrar mis presupuestos"</string>
     <string name="fragment_business_profile_mod">"Modificar perfil"</string>
     <string name="fragment_business_profile_log_out">"Cerrar sesión"</string>
+
+    <!-- FragmentBusinessChat -->
+    <string name="fragment_business_profile_chat_question_delete_alert_dialog">"¿Desea eliminar la transacción?"</string>
+    <string name="fragment_business_profile_chat_affirmative_delete_alert_dialog">"Eliminar"</string>
+    <string name="fragment_business_profile_chat_negative_delete_alert_dialog">"Cancelar"</string>
+    <string name="fragment_business_profile_chat_action_delete_alert_dialog">"Eliminar transacción"</string>
+
+
+
+    <!-- FragmentClientChat -->
+    <string name="fragment_client_profile_chat_question_delete_alert_dialog">"¿Desea eliminar la transacción?"</string>
+    <string name="fragment_client_profile_chat_affirmative_delete_alert_dialog">"Eliminar"</string>
+    <string name="fragment_client_profile_chat_negative_delete_alert_dialog">"Cancelar"</string>
+    <string name="fragment_client_profile_chat_action_delete_alert_dialog">"Eliminar transacción"</string>
+
+
 
     <!-- ActivityBusinessProfileBudgets -->
     <string name="activity_business_profile_budgets_question_alert_dialog">"¿Quieres eliminar el trabajo?"</string>
