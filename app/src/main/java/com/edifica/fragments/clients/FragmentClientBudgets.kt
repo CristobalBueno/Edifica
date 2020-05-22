@@ -1,5 +1,6 @@
 package com.edifica.fragments.clients
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,6 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
+import com.edifica.activities.clients.ActivityClientChat
+import com.edifica.activities.clients.ActivityClientFormulary
 import com.edifica.adapters.TransactionsClientAdapter
 import com.edifica.interfaces.TransactionListener
 import com.edifica.models.*
@@ -109,7 +112,9 @@ class FragmentClientBudgets : Fragment(), TransactionListener {
     }
 
     override fun chatOnItemClick(transaction: Transactions, position: Int) {
-        TODO("Not yet implemented")
+        val intent = Intent(context, ActivityClientChat::class.java)
+        intent.putExtra("user", transaction.userBusiness.uid)
+        startActivity(intent)
     }
 
 }
