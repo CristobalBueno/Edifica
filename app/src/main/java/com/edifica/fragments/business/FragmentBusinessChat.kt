@@ -1,5 +1,6 @@
 package com.edifica.fragments.business
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
 import com.edifica.activities.business.ActivityBusinessChat
 import com.edifica.activities.business.ActivityBusinessMain
+import com.edifica.activities.clients.ActivityClientChat
 import com.edifica.adapters.TransactionsBusinessAdapter
 import com.edifica.interfaces.TransactionListener
 import com.edifica.models.Ads
@@ -121,7 +123,9 @@ class FragmentBusinessChat : Fragment() , TransactionListener {
     }
 
     override fun chatOnItemClick(transaction: Transactions, position: Int) {
-        (activity as ActivityBusinessMain).gotoActivity(ActivityBusinessChat())
+        val intent = Intent(context, ActivityClientChat::class.java)
+        intent.putExtra("user", transaction.ad.user.uid)
+        startActivity(intent)
     }
 
 }

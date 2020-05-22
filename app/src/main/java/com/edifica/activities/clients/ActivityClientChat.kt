@@ -87,6 +87,12 @@ class ActivityClientChat : AppCompatActivity() {
                             if (chat != null) {
                                 Log.d("debug", chat.toString())
                                 loadAdapter()
+
+                                if (token.identifier == 0) {
+                                    chat_text_title.text = chat!!.business.name
+                                } else {
+                                    chat_text_title.text = chat!!.user.name
+                                }
                             }
                         }
                     }

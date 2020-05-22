@@ -1,15 +1,16 @@
 package com.edifica.fragments.clients
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.edifica.R
+import com.edifica.activities.clients.ActivityClientChat
 import com.edifica.adapters.TransactionsClientAdapter
 import com.edifica.interfaces.TransactionListener
 import com.edifica.models.*
