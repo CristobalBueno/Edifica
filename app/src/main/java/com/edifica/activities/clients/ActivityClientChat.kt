@@ -40,7 +40,6 @@ class ActivityClientChat : AppCompatActivity() {
 
             chat?.messages?.add(data)
             saveCurrentState()
-
             loadAdapter()
         }
     }
@@ -72,7 +71,7 @@ class ActivityClientChat : AppCompatActivity() {
             business = token.uid
         }
 
-        val dbAccess: DocumentReference = db.collection("chat").document(client)
+        val dbAccess: DocumentReference = db.collection("chat").document(client + business)
 
         // If this item exist, we will get it, if not, we will create one
         dbAccess.get().addOnSuccessListener { document ->
@@ -99,13 +98,13 @@ class ActivityClientChat : AppCompatActivity() {
                     "messages" to ArrayList<Map<String, Any?>>()
                 )
 
-                db.collection("chat").document(client).set(data)
+                db.collection("chat").document(client + business).set(data)
                 loadChat()
             }
         }
     }
 
     fun saveCurrentState() {
-        db.collection("chat").document(client).update("messages", chat?.messages)
+        db.collection("chat").document(client + business).update("messages", chat?.messages)
     }
 }
