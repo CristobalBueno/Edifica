@@ -1,7 +1,6 @@
 package com.edifica.fragments.clients
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -12,34 +11,31 @@ import com.edifica.activities.clients.ActivityClientAds
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.activities.login.ActivityAnimation
 import com.edifica.models.Dataholder
-import com.edifica.models.Token
 import com.edifica.models.Token.Companion.deleteToken
-import com.edifica.models.Token.Companion.readToken
-import com.edifica.models.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.fragment_client_profile.*
 import java.io.File
 
 
 class FragmentClientProfile : Fragment() {
 
-    val auth: FirebaseAuth = FirebaseAuth.getInstance()
-    var db = FirebaseFirestore.getInstance()
+    private val auth: FirebaseAuth = FirebaseAuth.getInstance()
+
+    private lateinit var activityMain: ActivityClientMain
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        activityMain = activity as ActivityClientMain
 
-        val rootView: View = inflater.inflate(R.layout.fragment_client_profile, container, false)
-        return rootView
+        return inflater.inflate(R.layout.fragment_client_profile, container, false)
     }
 
     override fun onResume() {
 
         super.onResume()
-        var userToken = readToken(File(context?.filesDir, Dataholder.FILENAME))
+        val userToken = activityMain.userToken
 
         client_profile_name.text = userToken.name
         client_profile_phone.text = userToken.phone
@@ -52,18 +48,18 @@ class FragmentClientProfile : Fragment() {
         setDefaultLayout()
 
         client_profile_ads.setOnClickListener {
-            (activity as ActivityClientMain).gotoActivity(ActivityClientAds())
+            activityMain.gotoActivity(ActivityClientAds())
         }
         client_profile_mod.setOnClickListener {
-            (activity as ActivityClientMain).gotoActivity(ActivityClientProfileMod())
+            activityMain.gotoActivity(ActivityClientProfileMod())
         }
         client_profile_log_out.setOnClickListener {
 
             deleteToken(File(context?.filesDir, Dataholder.FILENAME))
             auth.signOut()
 
-            (activity as ActivityClientMain).gotoActivity(ActivityAnimation())
-            (activity as ActivityClientMain).finish()
+            activityMain.gotoActivity(ActivityAnimation())
+            activityMain.finish()
         }
     }
 

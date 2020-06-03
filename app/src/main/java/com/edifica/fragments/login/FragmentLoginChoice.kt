@@ -21,8 +21,8 @@ import render.animations.Render
  */
 class FragmentLoginChoice : Fragment() {
 
-    var animation = 0
-    lateinit var button_login: Button
+    private var animation = 0
+    private lateinit var button_login: Button
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,7 +45,7 @@ class FragmentLoginChoice : Fragment() {
         animationArrow(view)
     }
 
-    fun animationArrow(view: View) {
+    private fun animationArrow(view: View) {
         // Declare ImageView
         val image_right: ImageView = view.findViewById(R.id.image_right)
         val image_left: ImageView = view.findViewById(R.id.image_left)

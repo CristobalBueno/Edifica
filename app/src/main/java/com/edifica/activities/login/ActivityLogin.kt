@@ -22,7 +22,7 @@ import java.io.File
 
 class ActivityLogin : BaseActivity() {
 
-    val ISCLIENT = "isClient"
+    private val ISCLIENT = "isClient"
 
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
@@ -36,7 +36,7 @@ class ActivityLogin : BaseActivity() {
         viewPage()
     }
 
-    fun viewPage() {
+    private fun viewPage() {
 
         val bundle = Bundle()
 
@@ -81,7 +81,7 @@ class ActivityLogin : BaseActivity() {
         mainViewPager2.setCurrentItem(1, false)
     }
 
-    fun clientStart(user: Token) {
+    private fun clientStart(user: Token) {
         if (user.identifier == 0) {
             Handler().postDelayed(Runnable {
                 gotoActivity(ActivityClientMain())

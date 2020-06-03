@@ -25,12 +25,12 @@ import java.io.File
 
 class ActivityAnimation : BaseActivity() {
 
-    var animation: Int = 0
-    var token: Boolean = false
-    lateinit var userToken: Token
+    private var animation: Int = 0
+    private var token: Boolean = false
+    private lateinit var userToken: Token
 
-    var db = FirebaseFirestore.getInstance()
-    var auth = FirebaseAuth.getInstance()
+    private var db = FirebaseFirestore.getInstance()
+    private var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +43,7 @@ class ActivityAnimation : BaseActivity() {
         animationLogo()
     }
 
-    fun animationLogo() {
+    private fun animationLogo() {
         // Declare TextView
         val image: ImageView = findViewById(R.id.image_logo)
         val textSlogan: TextView = findViewById(R.id.text_slogan)
@@ -80,7 +80,7 @@ class ActivityAnimation : BaseActivity() {
             override fun onFinish() {
                 animation = 0
 
-                if (getLogin()) {
+                if (token) {
                     if (userToken.identifier == 0) {
                         gotoActivity(ActivityClientMain())
                     } else if (userToken.identifier == 1) {
@@ -96,15 +96,7 @@ class ActivityAnimation : BaseActivity() {
         timer.start()
     }
 
-    fun getLogin(): Boolean {
-        if (token) {
-            return true
-        }
-
-        return false
-    }
-
-    fun loadUser() {
+    private fun loadUser() {
         val user = FirebaseAuth.getInstance().currentUser
         val file = File(filesDir, Dataholder.FILENAME)
         if (user != null) {
@@ -122,7 +114,7 @@ class ActivityAnimation : BaseActivity() {
 
             query.get().addOnSuccessListener { document ->
                 dbUser = document.toObject(User::class.java)
-                Log.e("debug",dbUser.toString())
+                Log.d("DBUSER",dbUser.toString())
 
                 userToken.name = dbUser?.name.toString()
                 userToken.phone = dbUser?.phone.toString()
@@ -130,10 +122,10 @@ class ActivityAnimation : BaseActivity() {
                 userToken.email = dbUser?.email.toString()
                 userToken.uid = dbUser!!.uid
 
-                Log.e("debug",userToken.toString())
-                Log.d("debug","success updating data")
+                Log.d("TOKEN",userToken.toString())
+                Log.d("DATABASE","success updating data")
             }.addOnFailureListener { exception ->
-                Log.d("debug","get failed with", exception)
+                Log.d("DATABASE","get failed with", exception)
             }
         }
     }

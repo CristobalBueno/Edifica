@@ -16,15 +16,15 @@ import kotlinx.android.synthetic.main.fragment_login.*
  */
 class FragmentLogin : Fragment() {
 
-    var isValidName: Boolean = false
-    var isValidPhone: Boolean = false
-    var isValidEmail: Boolean = false
-    var isValidPassword = false
+    private var isValidName: Boolean = false
+    private var isValidPhone: Boolean = false
+    private var isValidEmail: Boolean = false
+    private var isValidPassword = false
 
-    var isClient: Boolean? = false
-    val ISCLIENT = "isClient"
-    var identifier: Int = 1
-    lateinit var userToken: Token
+    private var isClient: Boolean? = false
+    private  val ISCLIENT = "isClient"
+    private var identifier: Int = 1
+    private lateinit var userToken: Token
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,7 +44,7 @@ class FragmentLogin : Fragment() {
         }
     }
 
-    fun updateView() {
+    private fun updateView() {
 
         val data = arguments
         isClient = data?.getBoolean(ISCLIENT)
@@ -70,7 +70,7 @@ class FragmentLogin : Fragment() {
         }
     }
 
-    fun success_Registration() {
+    private fun success_Registration() {
         nameVerification()
         emailVerification()
         phoneVerification()
@@ -96,7 +96,7 @@ class FragmentLogin : Fragment() {
         }
     }
 
-    fun nameVerification() {
+    private fun nameVerification() {
         if (!text_name.text.toString().isBlank() && text_name.text?.length!! <= 30) {
             isValidName = true
             textLayout_name.error = null
@@ -106,7 +106,7 @@ class FragmentLogin : Fragment() {
         }
     }
 
-    fun emailVerification() {
+    private fun emailVerification() {
         if (android.util.Patterns.EMAIL_ADDRESS.matcher(text_email.text.toString())
                 .matches() && !text_email.text.toString().isBlank()
         ) {
@@ -118,11 +118,7 @@ class FragmentLogin : Fragment() {
         }
     }
 
-    fun phoneVerification() {
-        Log.w(
-            "miapp",
-            "${android.util.Patterns.PHONE.matcher(text_phone.text.toString()).matches()}"
-        )
+    private fun phoneVerification() {
         if (android.util.Patterns.PHONE.matcher(text_phone.text.toString()).matches()) {
             isValidPhone = true
             textLayout_phone.error = null
@@ -132,7 +128,7 @@ class FragmentLogin : Fragment() {
         }
     }
 
-    fun passwordVerification() {
+    private fun passwordVerification() {
         var password = text_password.text
 
         if (password?.length!! <= 16 && password.length >= 6) {

@@ -17,7 +17,6 @@ import kotlinx.android.synthetic.main.activity_client_ads.*
 
 class ActivityClientAds : BaseActivity(), AdListener {
 
-
     lateinit var mAdapter: ClientAdsAdapter
     var db = FirebaseFirestore.getInstance()
     var allAds: ArrayList<Ads> = arrayListOf()

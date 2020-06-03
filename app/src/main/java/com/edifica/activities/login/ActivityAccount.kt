@@ -15,11 +15,11 @@ import java.io.File
 
 class ActivityAccount : BaseActivity() {
 
-    var isValidEmail: Boolean = false
-    lateinit var token: Token
+    private var isValidEmail: Boolean = false
+    private lateinit var token: Token
 
-    var db = FirebaseFirestore.getInstance()
-    var auth = FirebaseAuth.getInstance()
+    private var db = FirebaseFirestore.getInstance()
+    private var auth = FirebaseAuth.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,7 +36,7 @@ class ActivityAccount : BaseActivity() {
         success_Registration()
     }
 
-    fun emailVerification() {
+    private fun emailVerification() {
         if (android.util.Patterns.EMAIL_ADDRESS.matcher(text_count_email.text.toString())
                 .matches() && !text_count_email.text.toString().isBlank()
         ) {
@@ -48,13 +48,13 @@ class ActivityAccount : BaseActivity() {
         }
     }
 
-    fun success_Registration() {
+    private fun success_Registration() {
         if (isValidEmail) {
             signUp(text_count_email.text.toString(), text_count_password.text.toString())
         }
     }
 
-    fun signUp(email: String, password: String) {
+    private fun signUp(email: String, password: String) {
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -65,7 +65,6 @@ class ActivityAccount : BaseActivity() {
 
                     query.get().addOnSuccessListener { document ->
                         dbUser = document.toObject(User::class.java)
-                        Log.d("debug", dbUser.toString())
 
                         token.name = dbUser?.name.toString()
                         token.phone = dbUser?.phone.toString()
@@ -77,9 +76,9 @@ class ActivityAccount : BaseActivity() {
 
                         gotoActivity(ActivityAnimation())
 
-                        Log.d("debug", "success updating data")
+                        Log.d("DATABASE", "success updating data")
                     }.addOnFailureListener { exception ->
-                        Log.d("debug", "get failed with", exception)
+                        Log.d("DATABASE", "get failed with", exception)
                     }
                 } else {
 

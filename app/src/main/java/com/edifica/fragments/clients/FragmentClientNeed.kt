@@ -23,9 +23,11 @@ import kotlinx.android.synthetic.main.fragment_client_need.*
  */
 class FragmentClientNeed : Fragment(), GridCustomListener {
 
-    var guilds = arrayOf<Guild>()
-    lateinit var floatingButton: FloatingActionButton
-    val SELECTEDGUILDS = "selectedGuilds"
+    private lateinit var activityMain: ActivityClientMain
+    private lateinit var guilds: Array<Guild>
+
+    private lateinit var floatingButton: FloatingActionButton
+    private val SELECTEDGUILDS = "selectedGuilds"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,12 +36,15 @@ class FragmentClientNeed : Fragment(), GridCustomListener {
         val rootView: View =
             inflater.inflate(R.layout.fragment_client_need, container, false)
 
-        var recyclerView = rootView.findViewById<RecyclerView>(R.id.clientRecyclerView)
+        activityMain = activity as ActivityClientMain
+        guilds = activityMain.guilds
+
+        val recyclerView = rootView.findViewById<RecyclerView>(R.id.clientRecyclerView)
         floatingButton =
             rootView.findViewById<FloatingActionButton>(R.id.clientFloatingActionButton)
         floatingButton.visibility = View.INVISIBLE
 
-        val mAdapter = GridAdapter(generateGuilds(), this)
+        val mAdapter = GridAdapter(guilds, this)
         recyclerView.layoutManager = GridLayoutManager(context, 3)
         recyclerView.adapter = mAdapter
 
@@ -54,26 +59,12 @@ class FragmentClientNeed : Fragment(), GridCustomListener {
 
             for (guild in guilds) {
                 booleanArray += guild.isChecked
-                Log.w("miapp","LOG: ${guild.isChecked}")
             }
 
             val intent = Intent(context, ActivityClientFormulary::class.java)
             intent.putExtra(SELECTEDGUILDS, booleanArray)
             startActivity(intent)
         }
-    }
-
-    fun generateGuilds(): Array<Guild> {
-        for (guild in enumValues<Guild.GuildName>().iterator()) {
-            val integer =
-                resources.getIdentifier(guild.image.toLowerCase(), "drawable", context?.packageName)
-            val image = resources.getDrawable(integer)
-
-            var guild = Guild(guild.guildName, image, false)
-            guilds += guild
-        }
-
-        return guilds
     }
 
     override fun onItemClick(guild: Guild, position: Int) {
