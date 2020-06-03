@@ -12,9 +12,7 @@ import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.adapters.SearchBusinessAdapter
 import com.edifica.models.User
 import com.firebase.ui.firestore.FirestoreRecyclerAdapter
-import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
 import com.practica.proyect_no_name.Interface.CustomItemListener
 import kotlinx.android.synthetic.main.fragment_client_business.*
 
@@ -41,20 +39,26 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val query = db.collection("users").orderBy("identifier", Query.Direction.DESCENDING)
-        val options = FirestoreRecyclerOptions.Builder<User>().setQuery(query, User::class.java).build()
-
         mainRecyclerSeachBusiness.layoutManager = LinearLayoutManager(context)
-        fireAdapter = SearchBusinessAdapter(options)
+        fireAdapter = SearchBusinessAdapter(activityMain.businessUsers)
         mainRecyclerSeachBusiness.adapter = fireAdapter
-
-        Log.d("DEBUG", fireAdapter.snapshots.toString())
-
         mainRecyclerSeachBusiness.visibility = View.VISIBLE
 
         activityMain.setSupportActionBar(topSearchAppBar)
         setHasOptionsMenu(true)
         topSearchAppBar.title = " "
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        fireAdapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+
+        fireAdapter.stopListening()
     }
 
     override fun onItemClick(currentUser: User, position: Int) {

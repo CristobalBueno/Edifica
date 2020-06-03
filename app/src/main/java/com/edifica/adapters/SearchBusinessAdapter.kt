@@ -1,6 +1,5 @@
 package com.edifica.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,13 +13,12 @@ import kotlinx.android.synthetic.main.item_search_business.view.*
 
 class SearchBusinessAdapter(recyclerOptions: FirestoreRecyclerOptions<User>) : FirestoreRecyclerAdapter<User, SearchBusinessAdapter.MyViewHolder>(recyclerOptions) {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchBusinessAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_search_business, parent, false)
         return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int, model: User) {
-        Log.d("DEBUG", model.toString())
         holder.show(model)
     }
 

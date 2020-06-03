@@ -73,10 +73,8 @@ class ActivityLogin : BaseActivity() {
             }
         }
 
-
         mainViewPager2.adapter = myAdapter
         indicator.setViewPager(mainViewPager2)
-
 
         mainViewPager2.setCurrentItem(1, false)
     }
