@@ -8,10 +8,12 @@ import androidx.navigation.ui.NavigationUI
 import com.edifica.R
 import com.edifica.abstract.BaseActivity
 import com.edifica.models.*
+import com.firebase.ui.firestore.FirestoreRecyclerOptions
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.io.File
 import java.util.*
 
@@ -56,24 +58,10 @@ class ActivityClientMain : BaseActivity() {
         return guildsGenerated
     }
 
-    private fun loadAllBusinessDataBase(): ArrayList<User> {
-        val query = db.collection("users").whereEqualTo("identifier", 1)
-        val dbAllUsers: ArrayList<User> = arrayListOf()
+    private fun loadAllBusinessDataBase(): FirestoreRecyclerOptions.Builder<User> {
+        val query = db.collection("users").orderBy("identifier", Query.Direction.ASCENDING)
 
-        query.get().addOnSuccessListener { documents ->
-            if (documents != null) {
-                for (document in documents) {
-                    val user: User = document.toObject(User::class.java)
-
-                    dbAllUsers.add(user)
-                }
-            } else {
-                Log.d("DATABASE", "no such document")
-            }
-        }.addOnFailureListener { exception ->
-            Log.d("DATABASE", "get failed with", exception)
-        }
-        return dbAllUsers
+        return FirestoreRecyclerOptions.Builder<User>().setQuery(query, User::class.java)
     }
 
     private fun loadAllTransactions(): ArrayList<Transactions> {
