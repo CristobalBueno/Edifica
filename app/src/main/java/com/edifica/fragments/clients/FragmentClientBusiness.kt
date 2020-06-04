@@ -11,7 +11,6 @@ import com.edifica.activities.business.ActivityClientBusinessProfile
 import com.edifica.activities.clients.ActivityClientMain
 import com.edifica.adapters.SearchBusinessAdapter
 import com.edifica.models.User
-import com.firebase.ui.firestore.FirestoreRecyclerAdapter
 import com.google.firebase.firestore.FirebaseFirestore
 import com.practica.proyect_no_name.Interface.CustomItemListener
 import kotlinx.android.synthetic.main.fragment_client_business.*
@@ -23,7 +22,7 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
 
     var db = FirebaseFirestore.getInstance()
 
-    lateinit var fireAdapter: FirestoreRecyclerAdapter<User, SearchBusinessAdapter.MyViewHolder>
+    lateinit var fireAdapter: SearchBusinessAdapter
     private lateinit var activityMain: ActivityClientMain
 
     override fun onCreateView(
@@ -51,22 +50,16 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
 
     override fun onStart() {
         super.onStart()
-
         fireAdapter.startListening()
     }
 
     override fun onStop() {
         super.onStop()
-
         fireAdapter.stopListening()
     }
 
     override fun onItemClick(currentUser: User, position: Int) {
-        activityMain.gotoActivity(
-            ActivityClientBusinessProfile(),
-            true,
-            currentUser
-        )
+        activityMain.gotoActivity(ActivityClientBusinessProfile(),true,currentUser)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -77,12 +70,18 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-                //query?.let { businessAdapter.filter(it) }
+                Log.w("miapp", "FRAGMENTCLIENTBUSINESS -> $ TEXT SUBMIT $query")
+                query?.let {
+                    fireAdapter.filter(it)
+                }
                 return true
             }
 
             override fun onQueryTextChange(query: String?): Boolean {
-                //query?.let { businessAdapter.filter(it) }
+                Log.w("miapp", "FRAGMENTCLIENTBUSINESS -> CHANGE TEXT $query")
+                query?.let {
+                    fireAdapter.filter(it)
+                }
                 return true
             }
         })
