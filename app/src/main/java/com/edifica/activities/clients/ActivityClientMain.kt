@@ -13,6 +13,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import java.io.File
 import java.util.*
 
@@ -25,7 +26,7 @@ class ActivityClientMain : BaseActivity() {
 
     lateinit var userToken: Token
 
-    val businessUsers = loadAllBusinessDataBase()
+    val businessUsers = loadAllBusinessDataBase("")
     val transactions = loadAllTransactions()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,8 +58,14 @@ class ActivityClientMain : BaseActivity() {
         return guildsGenerated
     }
 
-    private fun loadAllBusinessDataBase(): FirestoreRecyclerOptions<User> {
-        val query = db.collection("users").whereEqualTo("identifier", 1)
+    fun loadAllBusinessDataBase(filter: String): FirestoreRecyclerOptions<User> {
+        var query: Query
+
+        query = if (filter != "") {
+            db.collection("users").whereEqualTo("identifier", 1).whereEqualTo("name", filter)
+        } else {
+            db.collection("users").whereEqualTo("identifier", 1)
+        }
 
         return FirestoreRecyclerOptions.Builder<User>().setQuery(query, User::class.java).build()
     }

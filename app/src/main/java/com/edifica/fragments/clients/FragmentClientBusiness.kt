@@ -39,7 +39,7 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
         super.onViewCreated(view, savedInstanceState)
 
         mainRecyclerSeachBusiness.layoutManager = LinearLayoutManager(context)
-        fireAdapter = SearchBusinessAdapter(activityMain.businessUsers)
+        fireAdapter = SearchBusinessAdapter(activityMain.businessUsers, this)
         mainRecyclerSeachBusiness.adapter = fireAdapter
         mainRecyclerSeachBusiness.visibility = View.VISIBLE
 
@@ -72,7 +72,8 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Log.w("miapp", "FRAGMENTCLIENTBUSINESS -> $ TEXT SUBMIT $query")
                 query?.let {
-                    fireAdapter.filter(it)
+                    fireAdapter.updateOptions(activityMain.loadAllBusinessDataBase(query))
+                    fireAdapter.notifyDataSetChanged()
                 }
                 return true
             }
@@ -80,7 +81,8 @@ class FragmentClientBusiness : Fragment(), CustomItemListener {
             override fun onQueryTextChange(query: String?): Boolean {
                 Log.w("miapp", "FRAGMENTCLIENTBUSINESS -> CHANGE TEXT $query")
                 query?.let {
-                    fireAdapter.filter(it)
+                    fireAdapter.updateOptions(activityMain.loadAllBusinessDataBase(query))
+                    fireAdapter.notifyDataSetChanged()
                 }
                 return true
             }
