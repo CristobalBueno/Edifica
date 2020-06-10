@@ -1,3 +1,200 @@
 <resources>
     <string name="app_name">Edifica</string>
+
+    <!-- Activity Animation -->
+    <string name="animation_screen_text">Dale vida a tus proyectos</string>
+
+    <!-- Fragment Login -->
+    <string name="login_choise_welcome">¡Bienvenido!</string>
+    <string name="login_choise_welcome2">Ahora necesitamos saber como quieres registrarte</string>
+    <string name="login_choise_button_business">Empresa o autónomo</string>
+    <string name="login_choise_button_client">Cliente</string>
+    <string name="login_choise_button_count">YA TENGO CUENTA</string>
+
+    <!-- Fragment Login Client -->
+    <string name="login_client_title">Cliente</string>
+    <string name="login_client_textlayout_Name">Nombre</string>
+    <string name="login_client_textlayout_Phone">Número de móvil</string>
+    <string name="login_client_textlayout_Email">Dirección de email</string>
+    <string name="login_client_error_name">Nombre vacío o demasiado extenso</string>
+    <string name="login_client_error_email">Email incorrecto</string>
+    <string name="login_client_error_phone">Formato incorrecto</string>
+    <string name="login_client_error_pass">Debe ser entre 6 y 16 digitos</string>
+    <string name="login_client_success">ÉXITO EN EL REGISTRO</string>
+    <string name="login_client_fail">FALLO EN EL REGISTRO</string>
+
+    <!-- Fragment Login Business -->
+    <string name="login_business_title">Empresa o Autónomo</string>
+    <string name="login_business_textlayout_Name">Nombre de empresa</string>
+    <string name="login_business_textlayout_Phone">Número de móvil</string>
+    <string name="login_business_textlayout_Email">Dirección de email</string>
+    <string name="login_business_textlayout_Password">Contraseña</string>
+    <string name="login_button_login">Registrarse</string>
+
+    <!-- Activity Count -->
+    <string name="activity_count_title">Login</string>
+    <string name="activity_count_hint_email">Introduce correo electrónico</string>
+    <string name="activity_count_hint_password">Introduce contraseña</string>
+    <string name="activity_count_next">Entrar</string>
+    <string name="activity_count_reset_password">¿Has olvidado la contraseña?</string>
+    <string name="activity_count_authentication_failed">Autentificación fallida</string>
+
+
+    <!-- Fragment Login Success -->
+    <string name="login_text_success">¡Éxito en el registro!</string>
+
+    <!-- Client Menu -->
+    <string name="menu_client_need">¿Qué necesitas?</string>
+    <string name="menu_client_business">Profesionales</string>
+    <string name="menu_client_budgets">Presupuestos</string>
+    <string name="menu_client_profile">Mi perfil</string>
+
+    <!-- Business Menu -->
+    <string name="menu_business_ads">Anuncios</string>
+    <string name="menu_business_chat">Chat</string>
+    <string name="menu_business_profile">Mi perfil</string>
+
+    <!-- Activity Client Business Profile -->
+    <string name="business_profile_title">Empresa o Autónomo</string>
+    <string name="business_profile_phone">+34 677 677 382</string>
+    <string name="business_profile_email">cristobalbuenocantarero@gmail.com</string>
+    <string name="business_profile_subtitle">Valoraciones</string>
+    <string name="business_profile_web">Página Web</string>
+    <string name="business_profile_description">Por mi padre! El rey!</string>
+
+    <string name="business_profile_rating">Valorar</string>
+
+    <string name="business_profile_rating_general">General</string>
+    <string name="business_profile_rating_communication">Comunicación</string>
+    <string name="business_profile_rating_quality">Calidad en los acabados</string>
+    <string name="business_profile_rating_cleaning">Limpieza</string>
+    <string name="business_profile_rating_deadlines">Cumplimiento de plazos</string>
+    <string name="business_profile_rating_professionalism">Profesionalidad</string>
+    <string name="business_profile_alert_dialog_rating_send">Enviar</string>
+    <string name="business_profile_alert_dialog_rating_cancel">Cancelar</string>
+    <string name="business_profile_alert_dialog_rating_title">¿Cómo valoría el trabajo realizado?</string>
+
+    <!-- Activity Client Ads -->
+    <string name="client_ads_alert_dialog_title">Eliminar anuncio</string>
+    <string name="client_ads_alert_dialog_message">¿Quieres eliminar el anuncio?</string>
+    <string name="client_ads_alert_dialog_delete">Eliminar</string>
+    <string name="client_ads_alert_dialog_cancel">No</string>
+
+
+    <!-- Activity Client Formulary -->
+    <string name="client_formulary_title">Publicar Anuncio</string>
+    <string name="client_formulary_title_hint">Título</string>
+    <string name="client_formulary_info_hint">Descripción de la reforma a realizar</string>
+    <string name="client_formulary_button_label">Registrar anuncio</string>
+
+    <!-- Activity Business Ads Details -->
+    <string name="activity_business_ads_details_title">DESCRIPCIÓN</string>
+    <string name="activity_business_ads_details_owner">Propietario:</string>
+    <string name="activity_business_ads_details_settlement">Establecimiento:</string>
+    <string name="activity_business_ads_details_province">Provincia:</string>
+    <string name="activity_business_ads_details_formulary">DETALLES</string>
+    <string name="activity_business_ads_details_accept">Oferta</string>
+    <string name="activity_business_ads_details_back">Ignorar</string>
+    <string name="activity_business_ads_details_dialog_send_text">Enviar</string>
+    <string name="activity_business_ads_details_dialog_cancel_text">Cancelar</string>
+    <string name="activity_business_ads_details_dialog_title">Envia una cuantía aproximada</string>
+    <string name="activity_business_ads_details_dialog_hint">Introduce una oferta preliminar</string>
+    <string name="activity_business_ads_details_dialog_send">Se ha enviado con éxito la oferta</string>
+    <string name="activity_business_ads_details_dialog_Nosend">La oferta esta vacía y no se ha enviado</string>
+
+    <!--FragmentClientProfile-->
+    <string name="fragment_client_profile_name">"Name"</string>
+    <string name="fragment_client_profile_email">"E-mail"</string>
+    <string name="fragment_client_profile_phone">"Phone"</string>
+    <string name="fragment_client_profile_ads">"Mostrar mis anuncios"</string>
+    <string name="fragment_client_profile_mod_profile">"Modificar perfil"</string>
+    <string name="fragment_client_profile_logout">"Cerrar sesión"</string>
+
+    <!-- ActivityClientProfileMod -->
+    <string name="activity_client_profile_mod_affirmative_question_change_name">"Si"</string>
+    <string name="activity_client_profile_mod_hint_question_change_name">"Introduzca el nuevo nombre"</string>
+    <string name="activity_client_profile_mod_negative_question_change_name">"No"</string>
+    <string name="activity_client_profile_mod_question_change_name">"¿Desea cambiar el nombre?"</string>
+    <string name="activity_client_profile_mod_hint_question_change_email">"Introduzca el nuevo email"</string>
+    <string name="activity_client_profile_mod_affirmative_question_change_email">"Si"</string>
+    <string name="activity_client_profile_mod_negative_question_change_email">"No"</string>
+    <string name="activity_client_profile_mod_question_change_email">"¿Desea cambiar el email?"</string>
+    <string name="activity_client_profile_mod_change_name_button">"Cambiar el nombre"</string>
+    <string name="activity_client_profile_mod_change_email_button">"Cambiar el e-mail"</string>
+    <string name="activity_client_profile_mod_delete_User">"Eliminar usuario"</string>
+
+    <!-- FragmentBusinessProfile -->
+    <string name="fragment_business_profile_name">"Name"</string>
+    <string name="fragment_business_profile_phone">"Phone"</string>
+    <string name="fragment_business_profile_email">"Email"</string>
+    <string name="fragment_business_profile_web">"Web"</string>
+    <string name="fragment_business_profile_mod">"Modificar perfil"</string>
+    <string name="fragment_business_profile_log_out">"Cerrar sesión"</string>
+
+    <!-- FragmentBusinessChat -->
+    <string name="fragment_business_profile_chat_question_delete_alert_dialog">"¿Desea eliminar la transacción?"</string>
+    <string name="fragment_business_profile_chat_affirmative_delete_alert_dialog">"Eliminar"</string>
+    <string name="fragment_business_profile_chat_negative_delete_alert_dialog">"Cancelar"</string>
+    <string name="fragment_business_profile_chat_action_delete_alert_dialog">"Eliminar transacción"</string>
+
+
+
+    <!-- FragmentClientChat -->
+    <string name="fragment_client_profile_chat_question_delete_alert_dialog">"¿Desea eliminar la transacción?"</string>
+    <string name="fragment_client_profile_chat_affirmative_delete_alert_dialog">"Eliminar"</string>
+    <string name="fragment_client_profile_chat_negative_delete_alert_dialog">"Cancelar"</string>
+    <string name="fragment_client_profile_chat_action_delete_alert_dialog">"Eliminar transacción"</string>
+
+
+
+    <!-- ActivityBusinessProfileBudgets -->
+    <string name="activity_business_profile_budgets_question_alert_dialog">"¿Quieres eliminar el trabajo?"</string>
+    <string name="activity_business_profile_budgets_affirmative_alert_dialog">"Eliminar"</string>
+    <string name="activity_business_profile_budgets_negative_alert_dialog">"Cancelar"</string>
+    <string name="activity_business_profile_budgets_action_alert_dialog">"Eliminar trabajo"</string>
+
+    <!-- ActivityBusinessProfileMod -->
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_photo">"Cambiar la foto"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_name">"Cambiar el nombre"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_email">"Cambiar el email"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_web">"Cambiar la direccion web"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_delete_User">"Eliminar la cuenta"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_denied_permission_photo">""</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_hint_change_name">"Introduzca el nuevo nombre"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_affirmative_change_name">"Si"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_negative_change_name">"No"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_question_change_name">"¿Desea cambiar el nombre?"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_hint_change_email">"Introduzca el nuevo email"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_affirmative_change_email">"Si"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_negative_change_email">"No"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_question_change_email">"¿Desea cambiar el email?"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_hint_change_web">"Introduzca su nueva direccion"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_affirmative_change_web">"Si"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_negative_change_web">"No"</string>
+    <string name="activity_business_profile_budgets_mod_business_profile_mod_question_change_web">"¿Desea cambiar su nueva direccion web?"</string>
+
+    <!--item transaction -->
+    <string name="cancel_item_transaction">"Cancelar"</string>
+    <string name="accept_item_transaction">"Aceptar"</string>
+    <string name="chat_item_transaction">"Chat"</string>
+
+
+    <!-- main_search -->
+    <string name="text_search">Buscar</string>
+
+    <!-- TODO quitar -->
+    <string name="client_need">¿Que necesitas?</string>
+    <string name="client_business">Business</string>
+    <string name="client_profile">Profile</string>
+    <string name="client_budgets">Budgets</string>
+    <string name="business_ads">Ads</string>
+    <string name="business_chat">Chat</string>
+    <string name="business_profile">Profile</string>
+
+    <!-- Chat -->
+    <string name="chat_text_hint">Escribe algo…</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

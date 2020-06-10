@@ -1,11 +1,40 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="colorPrimary">@color/colorBase</item>
+        <item name="colorPrimaryDark">@color/colorToolbar</item>
+        <item name="colorAccent">@color/colorTextTitleBase</item>
+    </style>
+
+    <!--Input Text Input Layout style-->
+    <style name="Mytextinputlayout" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="android:textColorHint">@color/colorTextSubtitleBase</item>
+        <item name="hintTextColor">@color/colorTextSubtitleBase</item>
+        <item name="boxBackgroundColor">@color/colorYellowLight</item>
+    </style>
+
+    <style name="MyButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/colorTextSubtitleBase</item>
+        <item name="android:fontFamily">@font/jostmedium</item>
+    </style>
+
+    <!--Rating Bar style-->
+    <style name="MyRatingBar" parent="@style/Widget.AppCompat.RatingBar.Small">
+        <item name="android:progressTint">@color/colorYellow</item>
+        <item name="android:secondaryProgressTint">@android:color/transparent</item>
+    </style>
+
+    <style name="MyMaterialAlertDialog" parent="MaterialAlertDialog.MaterialComponents">
+        <item name="colorPrimary">@color/colorRed</item>
+        <item name="colorPrimaryDark">#000000</item>
+        <item name="colorAccent">#000000</item>
     </style>
 
 </resources>

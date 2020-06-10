@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/fragmentClientNeed"
+        android:icon="@drawable/ic_business_center_24dp"
+        android:title="@string/menu_client_need" />
+
+    <item
+        android:id="@+id/fragmentClientBusiness"
+        android:icon="@drawable/ic_search_black_24dp"
+        android:title="@string/menu_client_business" />
+
+    <item
+        android:id="@+id/fragmentClientBudgets"
+        android:icon="@drawable/ic_insert_chart_24dp"
+        android:title="@string/menu_client_budgets" />
+
+    <item
+        android:id="@+id/fragmentClientProfile"
+        android:icon="@drawable/ic_settings_24dp"
+        android:title="@string/menu_client_profile" />
+
+</menu>

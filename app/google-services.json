@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "141861858826",
+    "firebase_url": "https://edifica-6e44d.firebaseio.com",
+    "project_id": "edifica-6e44d",
+    "storage_bucket": "edifica-6e44d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:141861858826:android:4c8e36ba9918bd61a8b9f3",
+        "android_client_info": {
+          "package_name": "com.edifica"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "141861858826-853oqk2gc9vk9rcgbdg0mbpm89l015lb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.edifica",
+            "certificate_hash": "ff9b04de91da96c21be91f25af88defa317e7779"
+          }
+        },
+        {
+          "client_id": "141861858826-kukn174i6le5h9t3t8t72cr0c8mq6cti.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD_uAAlFdcy6Mfe4WGH7cItncHrcyd4WD4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "141861858826-kukn174i6le5h9t3t8t72cr0c8mq6cti.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

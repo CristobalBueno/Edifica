@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/client_navigation"
+    app:startDestination="@id/fragmentBusinessAds">
+    <fragment
+        android:id="@+id/fragmentBusinessAds"
+        android:name="com.edifica.fragments.business.FragmentBusinessAds"
+        android:label="fragment_business_ads"
+        tools:layout="@layout/fragment_business_ads" />
+    <fragment
+        android:id="@+id/fragmentBusinessChat"
+        android:name="com.edifica.fragments.business.FragmentBusinessChat"
+        android:label="fragment_business_chat"
+        tools:layout="@layout/fragment_business_chat" />
+    <fragment
+        android:id="@+id/fragmentBusinessProfile"
+        android:name="com.edifica.fragments.business.FragmentBusinessProfile"
+        android:label="fragment_business_profile"
+        tools:layout="@layout/fragment_business_profile" />
+</navigation>
